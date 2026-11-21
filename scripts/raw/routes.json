@@ -1,0 +1,53 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-21T06:16:52Z",
+    "timestamp_areas_base": "2026-11-21T02:25:06Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "relation",
+  "id": 102388,
+  "tags": {
+    "colour": "#F8C300",
+    "from": "Vaughan Metropolitan Centre",
+    "name": "Line 1 Yonge-University (Vaughan Metropolitan Centre → Finch)",
+    "network": "TTC",
+    "network:wikidata": "Q6612865",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "public_transport:version": "2",
+    "ref": "1",
+    "route": "subway",
+    "to": "Finch",
+    "type": "route",
+    "wikidata": "Q54369"
+  }
+},
+{
+  "type": "relation",
+  "id": 7884488,
+  "tags": {
+    "colour": "#F8C300",
+    "from": "Finch",
+    "name": "Line 1 Yonge-University (Finch → Vaughan Metropolitan Centre)",
+    "network": "TTC",
+    "network:wikidata": "Q6612865",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "public_transport:version": "2",
+    "ref": "1",
+    "route": "subway",
+    "to": "Vaughan Metropolitan Centre",
+    "type": "route",
+    "wikidata": "Q54369"
+  }
+}
+
+  ]
+}
