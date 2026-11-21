@@ -9,3 +9,10 @@ release/
 .env.*
 !.env.example
 test-results/
+# Orthoimagery is fetched by scripts/bake-imagery.mjs, not redistributed
+cache/
+public/imagery/
+
+# Large raw extracts (re-fetch with the bake scripts)
+scripts/raw/corridor-features.json
+scripts/raw/wiki/

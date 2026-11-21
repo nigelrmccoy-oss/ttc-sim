@@ -1,7 +1,9 @@
 # TTC Sim (unofficial)
 
 A browser-based Toronto subway driving game. First playable piece: **Line 1 Yonge-University**,
-driven from Vaughan Metropolitan Centre via Union to Finch in a placeholder TR-style 6-car train.
+driven from Vaughan Metropolitan Centre via Union to Finch in a placeholder TR-style 6-car train,
+over a real vertical profile on 1 m lidar terrain, through box and bored tunnels, portals, open
+cuts and viaducts, with orthoimagery, OSM buildings, trees and roads along the corridor.
 
 > Unofficial fan project. Not affiliated with, endorsed by, or connected to the Toronto Transit
 > Commission. No TTC logos, trademarks, or recorded sounds are used; the train livery is a
@@ -13,9 +15,14 @@ Stack: Vite + TypeScript + Three.js (same layout as [ion-LRT](https://github.com
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
-npm run build      # type-check + production build into dist/
+npm run bake:imagery   # once: fetch + cache orthoimagery into public/imagery/ (not in git)
+npm run dev            # http://localhost:5173
+npm run build          # type-check + production build into dist/
 ```
+
+Everything else the game needs is committed under `public/data/`. Without `bake:imagery` the
+terrain renders in plain green. `npm run bake` re-runs every bake step from the network
+(OSM, kiwix-serve on 127.0.0.1:8095 for Wikipedia, NRCan HRDEM, OIWMS).
 
 ## Controls
 
@@ -28,8 +35,34 @@ npm run build      # type-check + production build into dist/
 | C | toggle cab / chase camera |
 | Gamepad RT / LT | power / brake (stub, standard mapping; overrides keyboard while pressed) |
 
-The HUD shows speed, the line speed limit, controller position, acceleration, distance to the
-next station's stop mark (far end of the platform), and chainage along the line.
+The HUD shows speed, the line speed limit, controller position, acceleration, grade (% and ‰),
+the structure type and rail elevation, distance to the next station's stop mark (far end of the
+platform), and chainage. Within 700 m of a station a panel shows its opening date, platform type,
+station type, levels and area from Wikipedia. Grade resistance is in the physics: `-g·sin(atan(grade))`
+at the middle of the consist (single-point mass, ESTIMATE).
+
+## Profile, tunnels and terrain
+
+`scripts/bake-profile.mjs` samples the NRCan HRDEM 1 m bare-earth DTM every 5 m along the line,
+classifies each sample from the OSM way tags (tunnel / open / bridge), assigns a construction
+type (TYSSE twin bores, TYSSE station boxes, University-line bored section, 1954 Yonge
+cut-and-cover box, other boxes, open cut, at-grade, viaduct, short covered ways), and fits a rail
+profile: tunnel depth below a 600 m running mean of the ground, level platforms, the rail at
+each portal below ground by box height + cover, a 4% max grade (documented), and vertical curves.
+
+| Class (baked 2026-11-21) | Length |
+|---|---|
+| Tunnel | 31.63 km: TYSSE twin bores 7.31, University bored 1.62, 1954 Yonge box 5.53, other boxes 16.10, TYSSE station boxes 0.98, covered ways 0.10 |
+| Open | 6.72 km: at-grade (Allen Road median) 4.70, open cut (Rosedale, Davisville) 2.02 |
+| Viaduct / bridges | 0.38 km (Allen Road section) |
+| Max grade | 4.0% (the documented cap; reached e.g. near 17.9 km, St. Clair West–Dupont) |
+
+Tunnels render as box sections (cut-and-cover; walls widen around platforms) or round 5.4 m
+bores (TYSSE, documented diameter) with ring joints, with lights every 25 m. Portals get a
+headwall (the documented Ellis Portal carries its name), open cuts get retaining walls, viaducts
+get a deck, parapets and piers. Terrain tiles are carved at bake time for cuts, embankments and
+tunnel cover. All sources, and which numbers are estimates, are listed in
+[docs/sources.md](docs/sources.md).
 
 ## Data
 
@@ -47,6 +80,15 @@ Known data limits: only one running track (the VMC → Finch direction) is mappe
 flat (no elevation, tunnels, or viaducts yet); `platformSideEstimate` is just which side of that
 track the OSM platform polygon lies, so island platforms are not distinguished; the end-of-line
 platforms at VMC and Finch are truncated where the mapped track ends.
+
+## Attribution
+
+Shown in-game (bottom right) and here:
+
+- Terrain: Natural Resources Canada, HRDEM. Contains information licensed under the Open Government Licence – Canada.
+- Imagery: Ontario Imagery Web Map Service, Ontario Ministry of Natural Resources (South Central Ontario Orthophotography Project 2023). Contains information licensed under the Open Government Licence – Ontario.
+- Map data © OpenStreetMap contributors (ODbL 1.0).
+- Station facts from Wikipedia (CC BY-SA 4.0).
 
 ## Estimates
 
@@ -67,6 +109,9 @@ labelled `ESTIMATE` in the code. Current values:
 | Platform edge offset / width / height | 1.6 / 4.5 / 1.05 m | `src/game/World.ts` |
 | Sleeper spacing | 0.75 m | `World.ts` |
 | Driver eye height | 2.6 m | `src/game/Game.ts` |
+| Tunnel rail depths, box size, portal cover, cut depth, vertical curve radius | see `structure` in `line1_profile.json` | `scripts/bake-profile.mjs` |
+| Platform widths (side 4.5 m, island 7 m), track spacing 3.7 m, bore axis height | | `src/game/World.ts`, `Track.ts` |
+| Building heights without OSM tags (by type), storey 3.2 m, trees, road widths | | `scripts/bake-corridor.mjs`, `src/game/Scenery.ts` |
 | Good-stop tolerance | ±3 m | `Game.ts` |
 
 Track gauge is the Toronto subway's 1495 mm.
@@ -92,7 +137,13 @@ scripts/smoke-test.mjs    headless browser smoke test
 src/main.ts               boot: load line data, start game
 src/game/Physics.ts       traction/braking with jerk limit
 src/game/Track.ts         polyline + chainage lookups
-src/game/World.ts         trackbed, rails, sleepers, platforms, signs
+scripts/bake-stations-wiki.mjs  kiwix Wikipedia → public/data/line1_stations.json
+scripts/bake-profile.mjs  HRDEM + OSM → line1_profile.json, terrain/
+scripts/bake-corridor.mjs OSM buildings/trees/roads → corridor.json
+scripts/bake-imagery.mjs  OIWMS → public/imagery/ (git-ignored)
+src/game/World.ts         track, tunnels, portals, cuts, viaducts, platforms, signs
+src/game/Terrain.ts       lidar terrain tiles, imagery LOD
+src/game/Scenery.ts       buildings, trees, roads
 src/game/Train.ts         placeholder box-geometry consist
 src/game/Input.ts         keyboard + gamepad stub
 src/game/Game.ts          loop, cameras, HUD

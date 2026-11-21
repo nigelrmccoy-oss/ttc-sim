@@ -1,14 +1,19 @@
 {
   "name": "ttc-sim",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "description": "Unofficial Toronto subway driving sim (fan project, not affiliated with the TTC)",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "bake": "npm run bake:line1 && npm run bake:stations && npm run bake:profile && npm run bake:corridor && npm run bake:imagery",
     "bake:line1": "node scripts/bake-line1.mjs",
+    "bake:stations": "node scripts/bake-stations-wiki.mjs",
+    "bake:profile": "node scripts/bake-profile.mjs",
+    "bake:corridor": "node scripts/bake-corridor.mjs",
+    "bake:imagery": "node scripts/bake-imagery.mjs",
     "test:physics": "node scripts/physics-test.mjs",
     "test:smoke": "node scripts/smoke-test.mjs",
     "test": "npm run test:physics && npm run build && npm run test:smoke"
@@ -19,7 +24,11 @@
   "devDependencies": {
     "@types/three": "^0.170.0",
     "esbuild": "^0.25.0",
+    "geotiff": "^2.1.3",
+    "jpeg-js": "^0.4.4",
     "playwright": "1.64.0",
+    "pngjs": "^7.0.0",
+    "proj4": "^2.23.0",
     "typescript": "~5.6.3",
     "vite": "^6.0.0"
   }

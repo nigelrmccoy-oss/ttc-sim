@@ -1,0 +1,1308 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-21T09:57:01Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 7657604,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 8630751,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 9326544,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 9326546,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "note": "This portion of track was originally above ground in trench but later covered to make room for redevelopment",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 32052198,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "shelter": "yes",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 32120751,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "note": "Upper platform",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 35565484,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "note": "centre platform",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 35566900,
+  "tags": {
+    "area": "yes",
+    "foot": "yes",
+    "layer": "1",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 35981812,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981813,
+  "tags": {
+    "bench": "yes",
+    "bin": "yes",
+    "lit": "yes",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "shelter": "yes",
+    "subway": "yes",
+    "tactile_paving": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 35981816,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981818,
+  "tags": {
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 35981819,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981820,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981821,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981822,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981823,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981824,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981825,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981827,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981828,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 35981829,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes",
+    "tactile_paving": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 42785317,
+  "tags": {
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 42852047,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 63032464,
+  "tags": {
+    "access": "customers",
+    "area": "yes",
+    "layer": "-1",
+    "level": "-1",
+    "location": "underground",
+    "network": "TTC",
+    "note": "no transfer to other platform",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 70803571,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "note": "centre platform",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 98230708,
+  "tags": {
+    "area": "yes",
+    "covered": "yes",
+    "level": "-1",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 133670300,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "level": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes",
+    "tactile_paving": "yes",
+    "wikidata": "Q885413",
+    "wikipedia": "en:Bloor–Yonge station"
+  }
+},
+{
+  "type": "way",
+  "id": 207821531,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "level": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "note": "centre platform",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 262307724,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 298852577,
+  "tags": {
+    "area": "yes",
+    "indoor": "yes",
+    "layer": "-2",
+    "level": "-3",
+    "location": "underground",
+    "network": "TTC",
+    "note": "Line 1 towards Finch",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 319709220,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 326173583,
+  "tags": {
+    "area": "yes",
+    "bench": "no",
+    "layer": "-2",
+    "level": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "note": "Platform for Line 1 northbound to Finch",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 350229019,
+  "tags": {
+    "access": "customers",
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "level": "-2",
+    "location": "underground",
+    "name": "Line 1 Northbound",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 353264275,
+  "tags": {
+    "area": "yes",
+    "covered": "yes",
+    "layer": "-2",
+    "level": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "way",
+  "id": 432603263,
+  "tags": {
+    "indoor": "yes",
+    "level": "-1",
+    "name": "Cedarvale",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550670708,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550670711,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550734188,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-3",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 550736224,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550736226,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "level": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550845639,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes",
+    "tactile_paving": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550845646,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550878794,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-3",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 550878796,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550885418,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-3",
+    "level": "-3",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes",
+    "tactile_paving": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550885421,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 550885424,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 551056409,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551056412,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551056414,
+  "tags": {
+    "area": "yes",
+    "covered": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551056417,
+  "tags": {
+    "area": "yes",
+    "bench": "yes",
+    "bin": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes",
+    "tactile_paving": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551056422,
+  "tags": {
+    "area": "yes",
+    "departures_board": "realtime",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551056425,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551491785,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551491786,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 551491787,
+  "tags": {
+    "area": "yes",
+    "layer": "-2",
+    "location": "underground",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "public_transport": "platform",
+    "railway": "platform",
+    "subway": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 750611389,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "building_passage",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 750611390,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1013616792,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1013616795,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1013616797,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1013616799,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "1",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1013616802,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1013616803,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "no",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1017277570,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1017277572,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1017277573,
+  "tags": {
+    "covered": "yes",
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 1017277576,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "0",
+    "gauge": "1495",
+    "layer": "-2",
+    "name": "Line 1 Yonge-University",
+    "network": "TTC",
+    "operator": "Toronto Transit Commission",
+    "operator:short": "TTC",
+    "operator:wikidata": "Q17978",
+    "operator:wikipedia": "en:Toronto Transit Commission",
+    "railway": "subway",
+    "railway:atc": "yes",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+}
+
+  ]
+}

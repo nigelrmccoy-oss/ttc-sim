@@ -1,0 +1,1116 @@
+{
+ "source": {
+  "facts": "English Wikipedia via offline kiwix zim wikipedia_en_all_maxi_2026-08 (text CC BY-SA 4.0; per-station article titles below)",
+  "osm": "Stop positions: OpenStreetMap contributors, ODbL 1.0 (relation 102388)",
+  "extracted": "2026-11-21T10:00:37.017Z",
+  "note": "coordMismatch = Wikipedia infobox coordinates more than 100 m from the OSM stop position (OSM marks the train stop point, Wikipedia usually the station building/centre)."
+ },
+ "stations": [
+  {
+   "name": "Vaughan Metropolitan Centre",
+   "wikipedia": {
+    "title": "Vaughan_Metropolitan_Centre_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Vaughan_Metropolitan_Centre_station"
+   },
+   "coordinates": {
+    "lat": 43.79417,
+    "lon": -79.5275
+   },
+   "osmStop": {
+    "lat": 43.7941982,
+    "lon": -79.527513,
+    "node": 5321964729
+   },
+   "wikiVsOsmM": 3,
+   "coordMismatch": false,
+   "opened": "2017-12-17",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3150 Highway 7 West ; Vaughan , Ontario; Canada"
+  },
+  {
+   "name": "Highway 407",
+   "wikipedia": {
+    "title": "Highway_407_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Highway_407_station"
+   },
+   "coordinates": {
+    "lat": 43.78333,
+    "lon": -79.52306
+   },
+   "osmStop": {
+    "lat": 43.7832892,
+    "lon": -79.5231501,
+    "node": 5321964732
+   },
+   "wikiVsOsmM": 9,
+   "coordMismatch": false,
+   "opened": "2017-12-17",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "7332 Jane Street,; Vaughan , Ontario; Canada"
+  },
+  {
+   "name": "Pioneer Village",
+   "wikipedia": {
+    "title": "Pioneer_Village_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Pioneer_Village_station"
+   },
+   "coordinates": {
+    "lat": 43.77694,
+    "lon": -79.50917
+   },
+   "osmStop": {
+    "lat": 43.7768218,
+    "lon": -79.5093059,
+    "node": 5321964734
+   },
+   "wikiVsOsmM": 17,
+   "coordMismatch": false,
+   "opened": "2017-12-17",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": {
+    "value": 3,
+    "basis": "article text: \"three levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "185 Northwest Gate, Toronto , Ontario; Canada"
+  },
+  {
+   "name": "York University",
+   "wikipedia": {
+    "title": "York_University_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/York_University_station"
+   },
+   "coordinates": {
+    "lat": 43.77417,
+    "lon": -79.49972
+   },
+   "osmStop": {
+    "lat": 43.7740831,
+    "lon": -79.4996494,
+    "node": 5321964736
+   },
+   "wikiVsOsmM": 11,
+   "coordMismatch": false,
+   "opened": "2017-12-17",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "120 Ian Macdonald Boulevard; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Finch West",
+   "wikipedia": {
+    "title": "Finch_West_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Finch_West_station"
+   },
+   "coordinates": {
+    "lat": 43.76472,
+    "lon": -79.49139
+   },
+   "osmStop": {
+    "lat": 43.7646446,
+    "lon": -79.4913677,
+    "node": 5321964738
+   },
+   "wikiVsOsmM": 9,
+   "coordMismatch": false,
+   "opened": "2017-12-17",
+   "platformsRaw": "Island platforms",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": {
+    "value": 2,
+    "basis": "article text: \"two-storey\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3950 Keele Street; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Downsview Park",
+   "wikipedia": {
+    "title": "Downsview_Park_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Downsview_Park_station"
+   },
+   "coordinates": {
+    "lat": 43.75361,
+    "lon": -79.47861
+   },
+   "osmStop": {
+    "lat": 43.7537357,
+    "lon": -79.4775452,
+    "node": 5321964739
+   },
+   "wikiVsOsmM": 87,
+   "coordMismatch": false,
+   "opened": "2017-12-17",
+   "platformsRaw": "1 centre platform (TTC); 1 side platform + 1 under construction (GO Transit)",
+   "platformType": "island+side",
+   "tracks": 2,
+   "levels": null,
+   "structure": null,
+   "structureRaw": null,
+   "neighbourhood": null,
+   "address": "25 Vitti Street,; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Sheppard West",
+   "wikipedia": {
+    "title": "Sheppard_West_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Sheppard_West_station"
+   },
+   "coordinates": {
+    "lat": 43.74917,
+    "lon": -79.46222
+   },
+   "osmStop": {
+    "lat": 43.7492727,
+    "lon": -79.4623012,
+    "node": 5321964742
+   },
+   "wikiVsOsmM": 13,
+   "coordMismatch": false,
+   "opened": "1996-03-30",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": "Bathurst Manor",
+   "address": "1035 Sheppard Avenue West ; Toronto , Ontario,; Canada"
+  },
+  {
+   "name": "Wilson",
+   "wikipedia": {
+    "title": "Wilson_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Wilson_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.73444,
+    "lon": -79.45
+   },
+   "osmStop": {
+    "lat": 43.7344821,
+    "lon": -79.4501628,
+    "node": 5321922637
+   },
+   "wikiVsOsmM": 14,
+   "coordMismatch": false,
+   "opened": "1978-01-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "surface",
+   "structureRaw": "At grade",
+   "neighbourhood": null,
+   "address": "570 Wilson Avenue; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Yorkdale",
+   "wikipedia": {
+    "title": "Yorkdale_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Yorkdale_station"
+   },
+   "coordinates": {
+    "lat": 43.72472,
+    "lon": -79.4475
+   },
+   "osmStop": {
+    "lat": 43.7239732,
+    "lon": -79.4473177,
+    "node": 5321922636
+   },
+   "wikiVsOsmM": 84,
+   "coordMismatch": false,
+   "opened": "1978-01-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "surface",
+   "structureRaw": "At grade",
+   "neighbourhood": null,
+   "address": "Yorkdale Road at Yorkdale Service Road, Yorkdale Shopping Centre ,; Toronto, Ontario; Canada"
+  },
+  {
+   "name": "Lawrence West",
+   "wikipedia": {
+    "title": "Lawrence_West_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Lawrence_West_station"
+   },
+   "coordinates": {
+    "lat": 43.71528,
+    "lon": -79.44389
+   },
+   "osmStop": {
+    "lat": 43.7142513,
+    "lon": -79.4435944,
+    "node": 5321922635
+   },
+   "wikiVsOsmM": 117,
+   "coordMismatch": true,
+   "opened": "1978-01-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "surface",
+   "structureRaw": "At-grade in highway median",
+   "neighbourhood": null,
+   "address": "655 Lawrence Avenue West; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Glencairn",
+   "wikipedia": {
+    "title": "Glencairn_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Glencairn_station"
+   },
+   "coordinates": {
+    "lat": 43.70861,
+    "lon": -79.44056
+   },
+   "osmStop": {
+    "lat": 43.7079279,
+    "lon": -79.4402439,
+    "node": 5320360102
+   },
+   "wikiVsOsmM": 80,
+   "coordMismatch": false,
+   "opened": "1978-01-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "surface",
+   "structureRaw": "At grade in highway median",
+   "neighbourhood": null,
+   "address": "785 Glencairn Avenue; Toronto, Ontario; Canada"
+  },
+  {
+   "name": "Cedarvale",
+   "wikipedia": {
+    "title": "Cedarvale_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Cedarvale_station"
+   },
+   "coordinates": {
+    "lat": 43.7,
+    "lon": -79.43639
+   },
+   "osmStop": {
+    "lat": 43.7000522,
+    "lon": -79.4364362,
+    "node": 5320359168
+   },
+   "wikiVsOsmM": 7,
+   "coordMismatch": false,
+   "opened": "1978-01-28",
+   "platformsRaw": "Line 1: Side platforms Line 5: Centre platform",
+   "platformType": "island+side",
+   "tracks": 1,
+   "levels": {
+    "value": 2,
+    "basis": "article text: \"two levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground / at grade",
+   "neighbourhood": null,
+   "address": "1300 Eglinton Avenue West; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "St. Clair West",
+   "wikipedia": {
+    "title": "St._Clair_West_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/St._Clair_West_station"
+   },
+   "coordinates": {
+    "lat": 43.685,
+    "lon": -79.41583
+   },
+   "osmStop": {
+    "lat": 43.6842942,
+    "lon": -79.4149805,
+    "node": 5320349307
+   },
+   "wikiVsOsmM": 104,
+   "coordMismatch": true,
+   "opened": "1978-01-28",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "370 St. Clair Avenue West; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Dupont",
+   "wikipedia": {
+    "title": "Dupont_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Dupont_station"
+   },
+   "coordinates": {
+    "lat": 43.674584,
+    "lon": -79.40683
+   },
+   "osmStop": {
+    "lat": 43.6749598,
+    "lon": -79.4071085,
+    "node": 55493182
+   },
+   "wikiVsOsmM": 47,
+   "coordMismatch": false,
+   "opened": "1978-01-28",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": "Annex",
+   "address": "263 Dupont Street ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Spadina",
+   "wikipedia": {
+    "title": "Spadina_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Spadina_station"
+   },
+   "coordinates": {
+    "lat": 43.66861,
+    "lon": -79.40472
+   },
+   "osmStop": {
+    "lat": 43.6692551,
+    "lon": -79.404915,
+    "node": 5320293097
+   },
+   "wikiVsOsmM": 74,
+   "coordMismatch": false,
+   "opened": "1978-01-28",
+   "platformsRaw": "Side platforms (Line 1 and Line 2)",
+   "platformType": "side",
+   "tracks": 4,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": "The Annex",
+   "address": "6 Spadina Road; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "St. George",
+   "wikipedia": {
+    "title": "St._George_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/St._George_station"
+   },
+   "coordinates": {
+    "lat": 43.66833,
+    "lon": -79.39889
+   },
+   "osmStop": {
+    "lat": 43.6684017,
+    "lon": -79.3988135,
+    "node": 5320293117
+   },
+   "wikiVsOsmM": 10,
+   "coordMismatch": false,
+   "opened": "1963-02-28",
+   "platformsRaw": "Centre platform (Line 1 and Line 2)",
+   "platformType": "island",
+   "tracks": 4,
+   "levels": {
+    "value": 2,
+    "basis": "article text: \"two-level\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "139 St. George Street ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Museum",
+   "wikipedia": {
+    "title": "Museum_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Museum_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.66694,
+    "lon": -79.39333
+   },
+   "osmStop": {
+    "lat": 43.6668228,
+    "lon": -79.3934107,
+    "node": 5320293823
+   },
+   "wikiVsOsmM": 15,
+   "coordMismatch": false,
+   "opened": "1963-02-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": {
+    "value": 1,
+    "basis": "article text: \"one level\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "75 Queen's Park; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Queen's Park",
+   "wikipedia": {
+    "title": "Queen's_Park_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Queen's_Park_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.65972,
+    "lon": -79.39028
+   },
+   "osmStop": {
+    "lat": 43.6598906,
+    "lon": -79.3902352,
+    "node": 9383064490
+   },
+   "wikiVsOsmM": 19,
+   "coordMismatch": false,
+   "opened": "1963-02-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "129 College Street; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "St. Patrick",
+   "wikipedia": {
+    "title": "St._Patrick_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/St._Patrick_station"
+   },
+   "coordinates": {
+    "lat": 43.65472,
+    "lon": -79.38833
+   },
+   "osmStop": {
+    "lat": 43.6548053,
+    "lon": -79.3883331,
+    "node": 5325990755
+   },
+   "wikiVsOsmM": 9,
+   "coordMismatch": false,
+   "opened": "1963-02-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "449 University Avenue; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Osgoode",
+   "wikipedia": {
+    "title": "Osgoode_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Osgoode_station"
+   },
+   "coordinates": {
+    "lat": 43.65083,
+    "lon": -79.38667
+   },
+   "osmStop": {
+    "lat": 43.6507357,
+    "lon": -79.3865786,
+    "node": 5325990749
+   },
+   "wikiVsOsmM": 13,
+   "coordMismatch": false,
+   "opened": "1963-02-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "181 Queen Street West; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "St. Andrew",
+   "wikipedia": {
+    "title": "St._Andrew_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/St._Andrew_station"
+   },
+   "coordinates": {
+    "lat": 43.64778,
+    "lon": -79.385
+   },
+   "osmStop": {
+    "lat": 43.6478236,
+    "lon": -79.3849597,
+    "node": 5325990745
+   },
+   "wikiVsOsmM": 6,
+   "coordMismatch": false,
+   "opened": "1963-02-28",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "173 King Street West,; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Union",
+   "wikipedia": {
+    "title": "Union_station_(TTC)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Union_station_(TTC)"
+   },
+   "coordinates": {
+    "lat": 43.64556,
+    "lon": -79.38028
+   },
+   "osmStop": {
+    "lat": 43.6456124,
+    "lon": -79.3802173,
+    "node": 5320067930
+   },
+   "wikiVsOsmM": 8,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": null,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "55 Front Street West ,; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "King",
+   "wikipedia": {
+    "title": "King_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/King_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.64889,
+    "lon": -79.37778
+   },
+   "osmStop": {
+    "lat": 43.6489482,
+    "lon": -79.3777245,
+    "node": 5320046178
+   },
+   "wikiVsOsmM": 8,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": {
+    "value": 3,
+    "basis": "article text: \"three levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3 King Street East ,; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Queen",
+   "wikipedia": {
+    "title": "Queen_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Queen_station"
+   },
+   "coordinates": {
+    "lat": 43.65278,
+    "lon": -79.37944
+   },
+   "osmStop": {
+    "lat": 43.6529624,
+    "lon": -79.3794527,
+    "node": 5320046187
+   },
+   "wikiVsOsmM": 20,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3 Queen Street East ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "TMU",
+   "wikipedia": {
+    "title": "TMU_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/TMU_station"
+   },
+   "coordinates": {
+    "lat": 43.65667,
+    "lon": -79.38111
+   },
+   "osmStop": {
+    "lat": 43.6565588,
+    "lon": -79.381003,
+    "node": 5320046199
+   },
+   "wikiVsOsmM": 15,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": {
+    "value": 3,
+    "basis": "article text: \"three levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3 Dundas Street East ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "College",
+   "wikipedia": {
+    "title": "College_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/College_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.66056,
+    "lon": -79.38278
+   },
+   "osmStop": {
+    "lat": 43.6606688,
+    "lon": -79.3827748,
+    "node": 5320046210
+   },
+   "wikiVsOsmM": 12,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3 Carlton Street; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Wellesley",
+   "wikipedia": {
+    "title": "Wellesley_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Wellesley_station"
+   },
+   "coordinates": {
+    "lat": 43.66556,
+    "lon": -79.38389
+   },
+   "osmStop": {
+    "lat": 43.6653098,
+    "lon": -79.3836925,
+    "node": 5320046342
+   },
+   "wikiVsOsmM": 32,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": {
+    "value": 2,
+    "basis": "article text: \"two levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "16 Wellesley Street East; Toronto , Ontario ; Canada"
+  },
+  {
+   "name": "Bloor-Yonge",
+   "wikipedia": {
+    "title": "Bloor–Yonge_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Bloor%E2%80%93Yonge_station"
+   },
+   "coordinates": {
+    "lat": 43.67083,
+    "lon": -79.38556
+   },
+   "osmStop": {
+    "lat": 43.6706042,
+    "lon": -79.3856233,
+    "node": 5320046329
+   },
+   "wikiVsOsmM": 26,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms (Line 1) Centre platform (Line 2)",
+   "platformType": "island+side",
+   "tracks": 4,
+   "levels": {
+    "value": 2,
+    "basis": "article text: \"two-storey\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "20 Bloor Street East,; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Rosedale",
+   "wikipedia": {
+    "title": "Rosedale_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Rosedale_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.67639,
+    "lon": -79.38861
+   },
+   "osmStop": {
+    "lat": 43.6770149,
+    "lon": -79.3886371,
+    "node": 5319198157
+   },
+   "wikiVsOsmM": 70,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "open cut",
+   "structureRaw": "Open cut",
+   "neighbourhood": null,
+   "address": "7 Crescent Road; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Summerhill",
+   "wikipedia": {
+    "title": "Summerhill_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Summerhill_station"
+   },
+   "coordinates": {
+    "lat": 43.68167,
+    "lon": -79.39056
+   },
+   "osmStop": {
+    "lat": 43.6816101,
+    "lon": -79.3904486,
+    "node": 5319198171
+   },
+   "wikiVsOsmM": 11,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "16 Shaftesbury Avenue; Toronto, Ontario; Canada"
+  },
+  {
+   "name": "St. Clair",
+   "wikipedia": {
+    "title": "St._Clair_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/St._Clair_station"
+   },
+   "coordinates": {
+    "lat": 43.68806,
+    "lon": -79.39361
+   },
+   "osmStop": {
+    "lat": 43.6883188,
+    "lon": -79.3933431,
+    "node": 5319198181
+   },
+   "wikiVsOsmM": 36,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "15 St. Clair Avenue East ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Davisville",
+   "wikipedia": {
+    "title": "Davisville_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Davisville_station"
+   },
+   "coordinates": {
+    "lat": 43.69806,
+    "lon": -79.39722
+   },
+   "osmStop": {
+    "lat": 43.6977822,
+    "lon": -79.3971716,
+    "node": 55493309
+   },
+   "wikiVsOsmM": 31,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Centre platform ; Side platform",
+   "platformType": "island+side",
+   "tracks": 3,
+   "levels": {
+    "value": 3,
+    "basis": "article text: \"three levels\""
+   },
+   "structure": "surface",
+   "structureRaw": "Above ground",
+   "neighbourhood": null,
+   "address": "1900 Yonge Street ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Eglinton",
+   "wikipedia": {
+    "title": "Eglinton_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Eglinton_station"
+   },
+   "coordinates": {
+    "lat": 43.7061,
+    "lon": -79.3985
+   },
+   "osmStop": {
+    "lat": 43.706129,
+    "lon": -79.3984644,
+    "node": 5319182796
+   },
+   "wikiVsOsmM": 4,
+   "coordMismatch": false,
+   "opened": "1954-03-30",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": {
+    "value": 3,
+    "basis": "article text: \"three-level\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "2190 Yonge Street; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Lawrence",
+   "wikipedia": {
+    "title": "Lawrence_station_(Toronto)",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Lawrence_station_(Toronto)"
+   },
+   "coordinates": {
+    "lat": 43.7263,
+    "lon": -79.4025
+   },
+   "osmStop": {
+    "lat": 43.7263497,
+    "lon": -79.4024188,
+    "node": 5319182798
+   },
+   "wikiVsOsmM": 9,
+   "coordMismatch": false,
+   "opened": "1973-03-31",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": {
+    "value": 4,
+    "basis": "article text: \"four levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "3101 Yonge Street ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "York Mills",
+   "wikipedia": {
+    "title": "York_Mills_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/York_Mills_station"
+   },
+   "coordinates": {
+    "lat": 43.744,
+    "lon": -79.4067
+   },
+   "osmStop": {
+    "lat": 43.7440626,
+    "lon": -79.4059822,
+    "node": 5319182801
+   },
+   "wikiVsOsmM": 58,
+   "coordMismatch": false,
+   "opened": "1973-03-31",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": "Hoggs Hollow",
+   "address": "4015 Yonge Street ; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "Sheppard-Yonge",
+   "wikipedia": {
+    "title": "Sheppard–Yonge_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Sheppard%E2%80%93Yonge_station"
+   },
+   "coordinates": {
+    "lat": 43.7615,
+    "lon": -79.4109
+   },
+   "osmStop": {
+    "lat": 43.7613336,
+    "lon": -79.4108161,
+    "node": 5318616973
+   },
+   "wikiVsOsmM": 20,
+   "coordMismatch": false,
+   "opened": "1974-03-29",
+   "platformsRaw": "Centre platform (Line 1) Side platforms (Line 4) Centre platform (Line 4; unused)",
+   "platformType": "island+side",
+   "tracks": 4,
+   "levels": {
+    "value": 5,
+    "basis": "article text: \"five levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "20 Sheppard Avenue West; Toronto , Ontario; Canada"
+  },
+  {
+   "name": "North York Centre",
+   "wikipedia": {
+    "title": "North_York_Centre_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/North_York_Centre_station"
+   },
+   "coordinates": {
+    "lat": 43.7687,
+    "lon": -79.4126
+   },
+   "osmStop": {
+    "lat": 43.7686816,
+    "lon": -79.412608,
+    "node": 5318616943
+   },
+   "wikiVsOsmM": 2,
+   "coordMismatch": false,
+   "opened": "1987-06-18",
+   "platformsRaw": "Side platforms",
+   "platformType": "side",
+   "tracks": 2,
+   "levels": null,
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": "Willowdale",
+   "address": "5102 Yonge Street; Toronto, Ontario; Canada"
+  },
+  {
+   "name": "Finch",
+   "wikipedia": {
+    "title": "Finch_station",
+    "source": "kiwix wikipedia_en_all_maxi_2026-08",
+    "url": "https://en.wikipedia.org/wiki/Finch_station"
+   },
+   "coordinates": {
+    "lat": 43.7813,
+    "lon": -79.4159
+   },
+   "osmStop": {
+    "lat": 43.7813102,
+    "lon": -79.4158337,
+    "node": 5318616941
+   },
+   "wikiVsOsmM": 5,
+   "coordMismatch": false,
+   "opened": "1974-03-29",
+   "platformsRaw": "Centre platform",
+   "platformType": "island",
+   "tracks": 2,
+   "levels": {
+    "value": 3,
+    "basis": "article text: \"three levels\""
+   },
+   "structure": "underground",
+   "structureRaw": "Underground",
+   "neighbourhood": null,
+   "address": "5600 Yonge Street; Toronto , Ontario; Canada"
+  }
+ ]
+}

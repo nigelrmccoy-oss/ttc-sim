@@ -51,6 +51,7 @@ function makeCar(lead: boolean): THREE.Group {
 export class Train {
   readonly group = new THREE.Group();
   private cars: THREE.Group[] = [];
+  private tmp = new THREE.Vector3();
 
   constructor() {
     for (let i = 0; i < CAR_COUNT; i++) {
@@ -66,8 +67,9 @@ export class Train {
       const front = track.poseAt(headS - i * CAR_LENGTH_M - GAP / 2);
       const back = track.poseAt(headS - (i + 1) * CAR_LENGTH_M + GAP / 2);
       const car = this.cars[i];
-      car.position.set((front.x + back.x) / 2, 0, (front.z + back.z) / 2);
-      car.rotation.y = Math.atan2(front.x - back.x, front.z - back.z);
+      car.position.set((front.x + back.x) / 2, (front.y + back.y) / 2, (front.z + back.z) / 2);
+      this.tmp.set(front.x, front.y, front.z);
+      car.lookAt(this.tmp); // +z towards the front bogie: follows curves and grades
     }
   }
 }

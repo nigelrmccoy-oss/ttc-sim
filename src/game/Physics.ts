@@ -40,6 +40,14 @@ export const DAVIS_C = 0.00006;
 export const kmh = (ms: number) => ms * 3.6;
 export const ms = (kmhValue: number) => kmhValue / 3.6;
 
+/** Standard gravity, m/s^2. */
+export const GRAVITY = 9.81;
+
+/** Along-track acceleration from gravity on a grade (rise/run). Uphill (positive grade) decelerates. */
+export function gradeAccel(grade: number): number {
+  return -GRAVITY * Math.sin(Math.atan(grade));
+}
+
 export interface PhysicsState {
   /** chainage of the head of the train along the line, metres */
   s: number;
@@ -77,6 +85,8 @@ export class TrainPhysics {
   state: PhysicsState;
   lever = 0;
   emergency = false;
+  /** Current grade under the train (rise/run), set by the game each step. */
+  grade = 0;
 
   constructor(startChainage = 0) {
     this.state = { s: startChainage, v: 0, aCmd: 0, aNet: 0 };
@@ -89,12 +99,13 @@ export class TrainPhysics {
     st.aCmd += Math.max(-j, Math.min(j, target - st.aCmd));
     // Traction must also respect the power curve immediately (it can drop as speed rises).
     if (st.aCmd > 0) st.aCmd = Math.min(st.aCmd, tractionLimit(st.v));
-    let a = st.aCmd - resistance(st.v);
+    let a = st.aCmd - resistance(st.v) + gradeAccel(this.grade);
     let v = st.v + a * dt;
     if (v <= 0) {
-      // Brakes and resistance hold the train at rest; no rolling backwards (no grades yet).
+      // No reverser yet: at rest the brakes hold the train (no roll-back on grades), and it only
+      // moves off once traction beats the grade.
       v = 0;
-      if (st.aCmd <= 0) a = 0;
+      if (a < 0) a = 0;
     }
     st.s += ((st.v + v) / 2) * dt;
     st.v = v;
