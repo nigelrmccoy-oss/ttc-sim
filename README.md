@@ -24,6 +24,19 @@ Everything else the game needs is committed under `public/data/`. Without `bake:
 terrain renders in plain green. `npm run bake` re-runs every bake step from the network
 (OSM, kiwix-serve on 127.0.0.1:8095 for Wikipedia, NRCan HRDEM, OIWMS).
 
+## Desktop icon and launcher
+
+- `scripts/launch.sh` builds `dist/` if it is missing or older than the sources. It then serves the built game with `vite preview` on http://127.0.0.1:5185/ and opens it in the browser.
+  - It works like the other games' `play.sh`: the server runs in a terminal window, and closing that window (or Ctrl-C) stops it.
+  - Set `PLAY_NO_BROWSER=1` for headless checks. `TTC_SIM_PORT` overrides the port.
+- `assets/ttc-sim.desktop` is the menu/desktop entry. Install it with:
+  `install -m 755 assets/ttc-sim.desktop ~/Desktop/TTC-Sim.desktop && install -m 755 assets/ttc-sim.desktop ~/.local/share/applications/TTC-Sim.desktop && gio set ~/Desktop/TTC-Sim.desktop metadata::trusted true`
+- The icon is `assets/icon/ttc-sim.svg`, with `ttc-sim-256.png` rendered from it by `node scripts/render-icon.mjs`. It is an original generic train-front drawing, with no TTC logo, roundel or trademark.
+
+## Backlog prompts
+
+`prompts/` holds bite-sized Game Coder / Devstral prompts for the backlog, one task each. Start with `prompts/00-README.md` and `prompts/index.md`.
+
 ## Controls
 
 | Input | Action |

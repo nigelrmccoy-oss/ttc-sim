@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=TTC Sim
+Comment=Play TTC Sim, unofficial Line 1 driving sim (local server on port 5185)
+Exec=x-terminal-emulator -e "/home/nig/ttc-sim/scripts/launch.sh"
+Path=/home/nig/ttc-sim
+Icon=/home/nig/ttc-sim/assets/icon/ttc-sim-256.png
+Terminal=false
+Categories=Game;
