@@ -88,6 +88,7 @@ try {
     console.log(`  info  ${name.padEnd(15)} s=${d.headS.toFixed(0)} ${d.section.padEnd(20)} grade ${d.gradePct.toFixed(2)}%  calls ${d.drawCalls}  tris ${(d.triangles / 1e6).toFixed(2)}M  fps ${d.fps.toFixed(1)}  hiResTiles ${d.hiResTiles}`);
   }
   const final = await page.evaluate(() => ({ ...window.__ttcSim }));
+  assert('train model reported (GLB cars when public/models exists)', final.trainModel === (fs.existsSync(path.join(root, 'public/models/tr_cab.glb')) ? 'glb' : 'boxes'), final.trainModel);
   assert('profile loaded (grade + section on HUD data)', typeof final.gradePct === 'number' && final.section.length > 0);
   assert('world built with tunnels, viaducts and portals', final.world && final.world.tunnelM > 25000 && final.world.viaductM > 100 && final.world.portals >= 4, JSON.stringify(final.world));
   if (final.scenery) console.log(`  info  scenery ${JSON.stringify(final.scenery)}`);

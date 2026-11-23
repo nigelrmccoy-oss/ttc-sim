@@ -1,6 +1,7 @@
 import './style.css';
 import { Game, type GameData } from './game/Game';
 import { setOrigin } from './game/geo';
+import { loadTrModels } from './game/Train';
 import type { LineData } from './game/Track';
 
 async function json<T>(url: string, required = true): Promise<T | null> {
@@ -30,6 +31,8 @@ async function boot(): Promise<void> {
   w.__ttcSim = game.debug; // read by the smoke test
   w.__ttcSimTeleport = (s) => game.teleport(s);
   game.start();
+  const models = await loadTrModels(); // optional: falls back to box cars
+  if (models) game.train.setModels(models);
 }
 
 boot().catch((err) => {

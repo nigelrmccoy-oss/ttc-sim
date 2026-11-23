@@ -41,6 +41,8 @@ export interface SimDebug {
   drawCalls: number;
   triangles: number;
   hiResTiles: number;
+  /** 'glb' when the TR models from public/models/ are in use, else 'boxes'. */
+  trainModel: 'glb' | 'boxes';
   world?: WorldStats;
   scenery?: SceneryStats;
 }
@@ -127,7 +129,7 @@ export class Game {
 
     this.debug = {
       frames: 0, headS: start, speedKmh: 0, lever: 0, stations: data.line.stations.length, trackLengthM: this.track.length,
-      gradePct: 0, railElevM: 0, section: '', fps: 0, drawCalls: 0, triangles: 0, hiResTiles: 0, world, scenery,
+      gradePct: 0, railElevM: 0, section: '', fps: 0, drawCalls: 0, triangles: 0, hiResTiles: 0, trainModel: 'boxes', world, scenery,
     };
     window.addEventListener('resize', () => this.resize());
     this.resize();
@@ -192,6 +194,7 @@ export class Game {
       frames: this.debug.frames + 1, headS: st.s, speedKmh: kmh(st.v), lever: this.physics.lever,
       gradePct: this.track.gradeAt(st.s) * 100, railElevM: this.track.railAt(st.s), section: this.track.constructionAt(st.s),
       drawCalls: info.calls, triangles: info.triangles, hiResTiles: this.terrain?.hiResLoaded ?? 0,
+      trainModel: this.train.model,
     });
   }
 

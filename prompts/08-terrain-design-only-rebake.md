@@ -31,7 +31,7 @@ A full `node scripts/bake-profile.mjs` re-samples HRDEM for 120 terrain tiles ov
 `flock /tmp/nigian-heavy-tests.lock npm test`, run from `/home/nig/ttc-sim`. The queue runs it as the gate. Print nothing secret.
 
 ## Manual follow-up (not for Devstral)
-Once, after merge: `flock /tmp/nigian-heavy-tests.lock node scripts/bake-profile.mjs` (network) to create the raw cache.
+The full network rebake with the current scripts was run on 2026-11-22 (terrain/OIWMS outputs unchanged). The raw-height cache only exists once this step adds it, so after merge run once: `flock /tmp/nigian-heavy-tests.lock node scripts/bake-profile.mjs` (network, about 2 min) to write `scripts/raw/terrain-raw.*`; after that `npm run bake:design` is offline.
 
 ## Rules
 - Edit **only** the files in `files:`. Any other edit fails the step. `read:` files are context only.

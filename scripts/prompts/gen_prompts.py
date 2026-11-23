@@ -179,7 +179,7 @@ add('08', 'terrain-design-only-rebake', 'Fast design-only terrain rebake (no HRD
     4. Add `scripts/raw/terrain-raw.*` to .gitignore; it is about 8 MB and rebuildable."""),
     d("""- `npm test` passes; nothing changes when DESIGN_ONLY is unset.
     - The bake logs `terrain: design-only from cache` when DESIGN_ONLY=1."""),
-    manual='Once, after merge: `flock /tmp/nigian-heavy-tests.lock node scripts/bake-profile.mjs` (network) to create the raw cache.')
+    manual='The full network rebake with the current scripts was run on 2026-11-22 (terrain/OIWMS outputs unchanged). The raw-height cache only exists once this step adds it, so after merge run once: `flock /tmp/nigian-heavy-tests.lock node scripts/bake-profile.mjs` (network, about 2 min) to write `scripts/raw/terrain-raw.*`; after that `npm run bake:design` is offline.')
 
 add('09', 'station-wiki-parse', 'Fill station neighbourhood and levels from the cached Wikipedia HTML',
     'scripts/bake-stations-wiki.mjs public/data/line1_stations.json scripts/physics-test.mjs', 'src/game/Track.ts', 'none',
@@ -380,64 +380,83 @@ add('20', 'traction-power-hud', 'Use line voltage in physics and show a power pa
     '- `npm test` passes, including `full power still climbs a 4% grade from rest`.')
 
 # ---------------------------------------------------------------- imagery cache
-add('21', 'tile-cache-core', 'Persistent LRU tile cache in IndexedDB (ION LRT pattern)',
-    'src/game/TileCache.ts scripts/tilecache-test.mjs package.json', 'src/game/Terrain.ts', 'none',
-    'Hi-res imagery is loaded from local baked JPEGs in `public/imagery/`, which covers only tiles within 250 m of the track. There is no browser cache.',
-    'A cache module like ION LRT\'s `src/game/map/MapCache.ts` (read-only reference): IndexedDB with `navigator.storage.persist()`, version-prefixed keys and LRU eviction. It has a memory backend so it can be tested in node.',
-    d("""1. Create `src/game/TileCache.ts` with:
-       - `CACHE_VERSION = 'ttc1'`;
-       - `key(kind: 'oiwms', z, x, y) = \\`${CACHE_VERSION}:${kind}:${z}/${x}/${y}\\``;
-       - `CAP_BYTES = 2 * 1024 ** 3` (ESTIMATE budget);
-       - `interface Backend { get(k); put(k, blob, bytes); delete(k); all(): rows }`;
+add('21', 'tile-cache-core', 'Persistent map tile cache: shared sim rule set (IndexedDB, 16 GB LRU)',
+    'src/game/TileCache.ts scripts/tilecache-test.mjs package.json', 'src/game/Terrain.ts scripts/lib-overpass.mjs', 'none',
+    d("""Hi-res imagery comes only from local baked JPEGs in `public/imagery/` (tiles within 250 m of the track). There is no browser cache.
+    OSM is bake-time only: `scripts/lib-overpass.mjs` asks nigian's Overpass at `http://127.0.0.1:12346/api/interpreter` first, then public mirrors, and stops after 3 missed requests. The game makes no Overpass calls."""),
+    d("""`src/game/TileCache.ts` implements the shared sim map-cache rule set. The pattern is nig-drives `src/game/map/OverpassCache.ts` (read only, never edit nig-drives; its key points are copied here):
+    - IndexedDB store with `navigator.storage.persist()`;
+    - 16 GB cap with LRU eviction (cap = min(16 GiB, 0.8 × `navigator.storage.estimate().quota`));
+    - version-prefixed keys, and the cache is read before the network;
+    - a network cooldown that stops after 3 missed tiles;
+    - `stats()` and `clear()` for a UI size readout and Clear button (prompt 22 adds the UI);
+    - fail soft: private mode, no IndexedDB or quota errors behave as a miss;
+    - Bing, Cesium and Google 3D Tiles are never disk-cached beyond their HTTP cache headers. `cacheable(url)` returns false for those hosts, so they always go to `fetch` with the browser's normal HTTP cache. OIWMS (Open Government Licence – Ontario) may be cached."""),
+    d("""1. Create `src/game/TileCache.ts` exporting:
+       - `CACHE_VERSION = 'ttc1'` and `key(kind: 'oiwms', z, x, y)`, which returns `` `${CACHE_VERSION}:${kind}:${z}/${x}/${y}` ``;
+       - `CAP_BYTES = 16 * 1024 ** 3` (shared rule) and `MISS_LIMIT = 3`;
+       - `cacheable(url: string): boolean`, which is false when the host matches `/(virtualearth|bing)\\.(net|com)|cesium\\.com|tile\\.googleapis\\.com|googleapis\\.com\\/.*3dtiles/i`;
+       - `interface Row { key: string; blob: Blob; bytes: number; lastUsed: number }`;
+       - `interface Backend { get(k): Promise<Row|null>; put(r: Row): Promise<void>; delete(k): Promise<void>; all(): Promise<Row[]>; clear(): Promise<void> }`;
        - `createMemoryBackend()`;
-       - `createIdbBackend()`, which resolves null when `indexedDB` is undefined;
-       - `class TileCache { get(k): Promise<Blob|null>; put(k, blob): Promise<void>; stats() }`. It updates `lastUsed` on get, and evicts least-recently-used entries down to 95% of the cap when over it;
-       - `askPersist()`, which calls `navigator.storage.persist()` when available and records the result.
-    2. Create `scripts/tilecache-test.mjs` (esbuild loader, memory backend). Asserts:
-       - `versioned keys`;
+       - `createIdbBackend(dbName = 'ttc-sim-tiles')`, an IndexedDB store keyed by `key` with a `lastUsed` index. It resolves null when `indexedDB` is undefined or open fails;
+       - `askPersist(): Promise<boolean|null>`. It calls `navigator.storage.persisted()` and then `persist()` when available, and records the result in `storagePersisted`. It is null when `navigator` is absent;
+       - `class TileCache { constructor(backend: Backend|null, capBytes = CAP_BYTES) }` with these methods:
+         - `get(k)`: a hit updates `lastUsed`;
+         - `put(k, blob)`: after a put, when the total is over the cap, delete the least-recently-used rows until the total is ≤ 95% of the cap;
+         - `fetchTile(url, k, fetcher = fetch)`: cache first (when `cacheable(url)`), then the network when not cooling. A non-ok answer or a throw counts as a miss. After `MISS_LIMIT` consecutive misses, `cooling` is true and the network is skipped for 10 minutes (`COOLDOWN_MS = 600_000`). A success resets the miss count. It returns `Blob|null` and never throws;
+         - `stats(): Promise<{ count, bytes, persisted, cooling }>`;
+         - `clear(): Promise<void>`.
+       A null backend acts as an always-miss cache.
+    2. Create `scripts/tilecache-test.mjs` (esbuild loader as in `scripts/physics-test.mjs`, memory backend, fake fetcher, injectable clock). It asserts:
+       - `versioned keys` (the key starts with `ttc1:`);
+       - `cache read before network` (a second fetchTile for the same key makes no fetcher call);
        - `get refreshes LRU order`;
-       - `eviction trims to 95% of cap, oldest first`;
+       - `eviction trims to 95% of cap, oldest first` (use a small cap such as 1000 bytes);
+       - `cooldown after 3 missed tiles` (the 4th call makes no fetcher call; after the clock passes `COOLDOWN_MS` it tries again);
+       - `success resets miss count`;
+       - `Bing/Cesium/Google 3D Tiles not disk-cached` (after fetchTile, a `virtualearth.net` URL leaves the store empty);
+       - `clear empties stats`;
        - `persist is optional (no navigator)`.
-    3. package.json: `test:tilecache` in the chain."""),
-    '- `npm test` passes, with the four cache tests PASS.')
+    3. package.json: add `"test:tilecache": "node scripts/tilecache-test.mjs"` and put it in `test` after `test:physics`."""),
+    '- `npm test` passes, with all nine cache tests PASS.\n- The `TileCache.ts` header comment names nig-drives `OverpassCache.ts` as the pattern and lists the rule set.')
 
-add('22', 'oiwms-live-tiles', 'Load uncached OIWMS hi-res tiles live through the tile cache',
-    'src/game/Terrain.ts', 'src/game/TileCache.ts', '21',
-    '`Terrain.updateImagery(cameraPos)` loads hi-res textures only for tiles in the baked index; other tiles stay low-res.',
-    d("""For tiles with no baked hi-res image, fetch the 4×4 z17 OIWMS tiles live:
-    `https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_Imagery/Ontario_Imagery_Web_Map_Service/MapServer/tile/{z}/{y}/{x}` (no key, Open Government Licence – Ontario).
-    Store them in the TileCache, stitch them on a 1024 px canvas, and keep the existing LOD rules (load within 1300 m, drop beyond 2000 m)."""),
-    d("""1. In Terrain.ts, add `private cache = new TileCache(...)`. Call `askPersist()` once.
-    2. In the hi-res path, when the baked index has no hi-res entry, run `loadLive(z15 tile)`:
-       - for each of the 16 z17 tiles: cache.get → else `fetch` (max 4 in flight; skip on error) → cache.put;
-       - draw to the canvas and make a CanvasTexture.
-    3. If the cache or `fetch` is unavailable, quietly keep the low-res texture.
-    4. Keep the attribution string unchanged. It already credits OIWMS."""),
-    '- `npm test` passes. Smoke runs offline, so live fetches fail quietly with `no console errors`; any fetch error must be caught and must not use console.error.')
+add('22', 'oiwms-live-tiles', 'Live OIWMS tiles through the tile cache, plus a cache size readout and Clear button',
+    'src/game/Terrain.ts src/game/CachePanel.ts src/main.ts', 'src/game/TileCache.ts src/game/Game.ts index.html', '21',
+    '`Terrain.updateImagery(cameraPos)` loads hi-res textures only for tiles in the baked index; other tiles stay low-res. There is no cache UI.',
+    d("""Tiles with no baked hi-res image load live from OIWMS through `TileCache.fetchTile` (cache first, 16 GB LRU, cooldown after 3 missed tiles; see 21 and nig-drives `OverpassCache.ts`).
+    The URL is `https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_Imagery/Ontario_Imagery_Web_Map_Service/MapServer/tile/{z}/{y}/{x}` (no key, Open Government Licence – Ontario).
+    A small corner panel shows the cache size and has a Clear button."""),
+    d("""1. `Terrain.ts`:
+       - add `private cache = new TileCache(null)` and an `async initCache()` that swaps in `createIdbBackend()` and calls `askPersist()`;
+       - in `updateImagery`, when the baked index has no hi-res entry for a z15 tile within 1300 m, run `loadLive(tile)`. It fetches the 16 z17 tiles through `cache.fetchTile(url, key('oiwms', 17, x, y))` with at most 4 in flight, skips nulls, draws them on a 1024 px canvas and makes a `CanvasTexture` (sRGB). Keep the existing LOD rules (load within 1300 m, drop beyond 2000 m, dispose on drop);
+       - while `cache.stats().cooling` is true, do not start new live loads;
+       - any failure keeps the low-res texture quietly, with no console.error.
+    2. Create `src/game/CachePanel.ts` with `mountCachePanel(cache: TileCache, parent = document.body)`. It adds a small fixed bottom-left `div#cache-panel` (inline styles, about 11 px text, semi-transparent dark background, so no CSS file edit is needed) that shows `Map cache: <n> tiles · <MB> MB` (GB above 1024 MB), `· persistent` or `· may be cleared by browser`, and `· network paused (3 misses)` while cooling. It has a `button#cache-clear` labelled `Clear`, which runs `cache.clear()` and then refreshes. Refresh every 5 s and after each clear. Do not catch keyboard keys, so the driving controls keep working.
+    3. `Terrain` exposes `readonly cache`. `main.ts` calls `await game.terrain?.initCache()` (when terrain exists) and `mountCachePanel(game.terrain.cache)` after `game.start()`. Leave `window.__ttcSim` and `__ttcSimTeleport` unchanged.
+    4. Keep the attribution unchanged. It already credits OIWMS (OGL-Ontario) and OSM (ODbL)."""),
+    d("""- `npm test` passes. The smoke test runs offline, so live fetches miss; after 3 misses the cooldown stops further requests, and `no console errors` still passes.
+    - `#cache-panel` and `#cache-clear` exist in the page."""))
 
 # ---------------------------------------------------------------- train model / input
-add('23', 'blender-tr-script', 'Blender script for an original TR-style car model',
-    'scripts/blender/tr_car.py public/models/README.md package.json', 'src/game/Train.ts', 'none',
-    'The cars are boxes in `Train.ts`.',
-    'A Python script that builds low-poly cab and middle cars in Blender. Running Blender is a manual step after this prompt.',
-    d("""1. Write `scripts/blender/tr_car.py`. It runs with `blender -b --factory-startup -P scripts/blender/tr_car.py -- --out public/models` and writes `tr_cab.glb` and `tr_mid.glb`.
-       - Dimensions, all ESTIMATE (public approximate figures; verify later): length over couplers 23.2 m, body width 3.13 m, roof 3.65 m above rail, 4 door pairs per side (1.3 m wide), bogie centres 16.1 m, wheel diameter 0.71 m.
-       - Under 15k triangles per car, origin at rail level at the car centre, −Z forward, exported with `export_yup=True`.
-       - Principled BSDF only: stainless (metallic 0.9, roughness 0.35), a generic red band, dark glass, black rubber. No logos or text; the destination sign stays blank.
-       - Print `tris=<n> bbox=<x,y,z>`.
-    2. Create `public/models/README.md` with the dimensions, the basis for each, how to rebuild, and "original non-trademark tribute".
-    3. package.json: add `"check:py": "python3 -m py_compile scripts/blender/tr_car.py"` and put it first in `test`."""),
-    '- `npm test` passes; `check:py` compiles the script.',
-    manual='After merge: `flock /tmp/nigian-heavy-tests.lock blender -b --factory-startup -P scripts/blender/tr_car.py -- --out public/models`, then commit the two GLBs (< 1.5 MB each).')
+add('23', 'blender-tr-script', 'Verify and tidy the TR-style Blender script and GLBs (already built)',
+    'scripts/blender/tr_car.py public/models/README.md', 'src/game/Train.ts package.json', 'none',
+    d("""Done by the TTC Sim bot on 2026-11-22: `scripts/blender/tr_car.py` builds `public/models/tr_cab.glb` (1 782 tris, 97 KB) and `tr_mid.glb` (1 548 tris, 82 KB) in Blender 4.3.2. The GLBs and the preview `docs/images/tr-preview.png` are committed, and `npm run check:py` (first in `test`) compiles the script.
+    Dimensions are ESTIMATE constants at the top of the script. The front is glTF +Z (Blender −Y), matching `Train.ts` `car.lookAt(front)`, and the origin is at rail level at the car centre."""),
+    'A tidy-only pass: the script and README agree, every dimension constant carries `ESTIMATE` or a documented basis, and there are no trademark elements. No geometry change is needed.',
+    d("""1. Read `scripts/blender/tr_car.py`. Make sure every dimension constant has an `# ESTIMATE` comment or a documented basis (gauge 1495 mm is documented). Fix only comments or docstrings, and do not change any numbers.
+    2. Make sure `public/models/README.md` lists the same values as the script constants and states "original non-trademark tribute". Fix any mismatch in the README.
+    3. Do not add text, logos or numbers to the model. Do not edit package.json (`check:py` already exists)."""),
+    '- `npm test` passes (`check:py` compiles the script).\n- `git diff` touches only comments, docstrings or the README.',
+    manual='Only if geometry changes later: `flock /tmp/nigian-heavy-tests.lock blender -b --factory-startup -P scripts/blender/tr_car.py -- --out public/models --preview docs/images/tr-preview.png`, then commit the GLBs (< 1.5 MB each).')
 
-add('24', 'load-tr-model', 'Use the TR GLB models with a box fallback',
-    'src/game/Train.ts src/main.ts scripts/smoke-test.mjs', 'src/game/Game.ts', '23',
-    '`Train` builds box cars. `Train.place(track, s)` positions them with `car.lookAt(front)`.',
-    'If `public/models/tr_cab.glb` and `tr_mid.glb` load, the GLB cars are used: cab at both ends with the rear one rotated 180°, middle cars between. Otherwise the boxes are used. `debug.trainModel` is `glb` or `boxes`.',
-    d("""1. `main.ts`: preload both files with `GLTFLoader` (`three/examples/jsm/loaders/GLTFLoader.js`). Catch a missing file and leave the templates null.
-    2. `Train.ts`: add an optional `templates` constructor argument. Clone per car and keep `castShadow`. Keep the headlight anchor and consist length.
-    3. `smoke-test.mjs`: add `assert('train model reported', ['glb','boxes'].includes(final.trainModel))`."""),
-    '- `npm test` passes whether or not the GLBs exist. (The new assert accepts both, so it passes before the manual Blender step.)')
+add('24', 'load-tr-model', 'Verify the TR GLB cars in game (already wired, box fallback)',
+    'src/game/Train.ts scripts/smoke-test.mjs', 'src/game/Game.ts src/main.ts', '23',
+    d("""Done by the TTC Sim bot on 2026-11-22: `Train.ts` exports `loadTrModels()` (GLTFLoader) and `Train.setModels()`. That puts the cab at both ends (the rear one turned 180°) and middle cars between, with shadows on. `main.ts` loads the models after `game.start()` and keeps the boxes if the files are missing. `debug.trainModel` is `glb` or `boxes`, and the smoke test asserts `glb` when `public/models/tr_cab.glb` exists."""),
+    'A verification pass with small fixes only: the box geometry replaced by `setModels` is disposed, and the materials too.',
+    d("""1. In `Train.setModels`, also dispose the replaced box materials (`(c as THREE.Mesh).material`, single or array). Do not touch the GLB clones (their geometry is shared).
+    2. In `scripts/smoke-test.mjs`, keep the `train model reported` assert. Print `info train model <glb|boxes>`."""),
+    '- `npm test` passes with `train model reported` PASS (`glb`).')
 
 add('25', 'gamepad-map', 'Full Xbox controller mapping (pure, tested)',
     'src/game/Input.ts scripts/input-test.mjs package.json', 'src/game/Game.ts', 'none',
@@ -619,7 +638,8 @@ These are small, self-contained prompts in the Game Coder queue format: front ma
 - For each one, the daemon switches `{REPO}` to `{BR}` (it creates the branch from the current HEAD the first time). Aider edits only `files:`. Then the gates run: tsc lint → `npm test` (games.json runs `env -u PLAYWRIGHT_BROWSERS_PATH {TEST}`) → Code Checker. A pass is committed locally on the branch and **never pushed**. Finally the daemon switches back to `main`.
 - The daemon refuses to start a step if the repo has uncommitted tracked changes, so keep `main` clean while the queue runs.
 - Aider cannot run shell commands. Generated data (`line1_profile.json`, `line1_speed.json`, `line1_substations.json`) is git-ignored and rebuilt by `npm run bake:derived`, which runs before dev, build and test. Prompts therefore never list big generated JSON in `files:`.
-- Manual follow-ups (Blender GLBs, the network rebake for the terrain cache) are marked in the prompts and need a person or the TTC Sim bot.
+- Manual follow-ups are marked in the prompts and need a person or the TTC Sim bot. Blender GLBs were built on 2026-11-22 (23 and 24 are now verify steps). The one-off network bake that writes the raw-height cache is still needed after 08.
+- Map data follows the shared sim cache rule set (pattern: nig-drives `OverpassCache.ts`). Overpass goes to nigian 127.0.0.1:12346 first with public mirror fallback (`scripts/lib-overpass.mjs`). The browser tile cache is IndexedDB with persist(), a 16 GB LRU and version-prefixed keys, read before the network, with a cooldown after 3 missed tiles, a size readout and a Clear button (21–22). Bing, Cesium and Google 3D Tiles are never disk-cached beyond their HTTP headers.
 
 ## By hand in Game Coder
 Use a fresh session per prompt. `/add` the files, `/read` the reads, paste the body, run `{TEST}`. Commit locally on `{BR}`; Nigel reviews and merges.

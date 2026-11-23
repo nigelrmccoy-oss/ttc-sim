@@ -1,28 +1,27 @@
 ---
 repo: /home/nig/ttc-sim
 branch: gamecoder/ttc-sim-backlog
-files: src/game/Train.ts src/main.ts scripts/smoke-test.mjs
-read: src/game/Game.ts
+files: src/game/Train.ts scripts/smoke-test.mjs
+read: src/game/Game.ts src/main.ts
 ctx: 32k
-title: TTC 24: Use the TR GLB models with a box fallback
+title: TTC 24: Verify the TR GLB cars in game (already wired, box fallback)
 ---
-# TTC 24 · Use the TR GLB models with a box fallback
+# TTC 24 · Verify the TR GLB cars in game (already wired, box fallback)
 
-Depends on: 23. Repo `/home/nig/ttc-sim`, branch `gamecoder/ttc-sim-backlog`. Files you may edit: `src/game/Train.ts src/main.ts scripts/smoke-test.mjs`.
+Depends on: 23. Repo `/home/nig/ttc-sim`, branch `gamecoder/ttc-sim-backlog`. Files you may edit: `src/game/Train.ts scripts/smoke-test.mjs`.
 
 ## Current behaviour
-`Train` builds box cars. `Train.place(track, s)` positions them with `car.lookAt(front)`.
+Done by the TTC Sim bot on 2026-11-22: `Train.ts` exports `loadTrModels()` (GLTFLoader) and `Train.setModels()`. That puts the cab at both ends (the rear one turned 180°) and middle cars between, with shadows on. `main.ts` loads the models after `game.start()` and keeps the boxes if the files are missing. `debug.trainModel` is `glb` or `boxes`, and the smoke test asserts `glb` when `public/models/tr_cab.glb` exists.
 
 ## Target
-If `public/models/tr_cab.glb` and `tr_mid.glb` load, the GLB cars are used: cab at both ends with the rear one rotated 180°, middle cars between. Otherwise the boxes are used. `debug.trainModel` is `glb` or `boxes`.
+A verification pass with small fixes only: the box geometry replaced by `setModels` is disposed, and the materials too.
 
 ## Steps
-1. `main.ts`: preload both files with `GLTFLoader` (`three/examples/jsm/loaders/GLTFLoader.js`). Catch a missing file and leave the templates null.
-2. `Train.ts`: add an optional `templates` constructor argument. Clone per car and keep `castShadow`. Keep the headlight anchor and consist length.
-3. `smoke-test.mjs`: add `assert('train model reported', ['glb','boxes'].includes(final.trainModel))`.
+1. In `Train.setModels`, also dispose the replaced box materials (`(c as THREE.Mesh).material`, single or array). Do not touch the GLB clones (their geometry is shared).
+2. In `scripts/smoke-test.mjs`, keep the `train model reported` assert. Print `info train model <glb|boxes>`.
 
 ## Acceptance
-- `npm test` passes whether or not the GLBs exist. (The new assert accepts both, so it passes before the manual Blender step.)
+- `npm test` passes with `train model reported` PASS (`glb`).
 
 ## Test
 `flock /tmp/nigian-heavy-tests.lock npm test`, run from `/home/nig/ttc-sim`. The queue runs it as the gate. Print nothing secret.

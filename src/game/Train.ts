@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { CAR_COUNT, CAR_LENGTH_M } from './Physics';
 import type { Track } from './Track';
 
@@ -48,10 +49,49 @@ function makeCar(lead: boolean): THREE.Group {
   return g;
 }
 
+/**
+ * Original TR-style GLB cars from scripts/blender/tr_car.py (public/models/, tribute design,
+ * ESTIMATE dimensions). Front = +Z, origin at rail level, car centre. Resolves null when the
+ * files are missing, so the box cars stay.
+ */
+export async function loadTrModels(base = './models/'): Promise<{ cab: THREE.Object3D; mid: THREE.Object3D } | null> {
+  try {
+    const loader = new GLTFLoader();
+    const [cab, mid] = await Promise.all([loader.loadAsync(`${base}tr_cab.glb`), loader.loadAsync(`${base}tr_mid.glb`)]);
+    // The scene has no environment map, so fully metallic stainless renders near-black.
+    // Cap metalness for in-game use; the GLBs keep their real PBR values.
+    for (const root of [cab.scene, mid.scene]) root.traverse((o) => {
+      const m = (o as THREE.Mesh).material as THREE.MeshStandardMaterial | undefined;
+      if (m && 'metalness' in m && m.metalness > 0.35) m.metalness = 0.35;
+    });
+    return { cab: cab.scene, mid: mid.scene };
+  } catch {
+    return null;
+  }
+}
+
 export class Train {
   readonly group = new THREE.Group();
   private cars: THREE.Group[] = [];
   private tmp = new THREE.Vector3();
+  /** 'glb' once setModels() has swapped the GLB cars in, else 'boxes'. */
+  model: 'glb' | 'boxes' = 'boxes';
+
+  /** Replace the box cars with GLB clones: cab at both ends (rear one turned 180°), middle cars between. */
+  setModels(t: { cab: THREE.Object3D; mid: THREE.Object3D }): void {
+    this.cars.forEach((car, i) => {
+      const end = i === 0 || i === this.cars.length - 1;
+      const m = (end ? t.cab : t.mid).clone(true);
+      if (i === this.cars.length - 1 && i > 0) m.rotation.y = Math.PI;
+      m.traverse((o) => { if ((o as THREE.Mesh).isMesh) { o.castShadow = true; o.receiveShadow = true; } });
+      for (const c of [...car.children]) {
+        car.remove(c);
+        (c as THREE.Mesh).geometry?.dispose();
+      }
+      car.add(m);
+    });
+    this.model = 'glb';
+  }
 
   constructor() {
     for (let i = 0; i < CAR_COUNT; i++) {

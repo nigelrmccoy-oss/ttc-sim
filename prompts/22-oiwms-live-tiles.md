@@ -1,33 +1,36 @@
 ---
 repo: /home/nig/ttc-sim
 branch: gamecoder/ttc-sim-backlog
-files: src/game/Terrain.ts
-read: src/game/TileCache.ts
+files: src/game/Terrain.ts src/game/CachePanel.ts src/main.ts
+read: src/game/TileCache.ts src/game/Game.ts index.html
 ctx: 32k
-title: TTC 22: Load uncached OIWMS hi-res tiles live through the tile cache
+title: TTC 22: Live OIWMS tiles through the tile cache, plus a cache size readout and Clear button
 ---
-# TTC 22 · Load uncached OIWMS hi-res tiles live through the tile cache
+# TTC 22 · Live OIWMS tiles through the tile cache, plus a cache size readout and Clear button
 
-Depends on: 21. Repo `/home/nig/ttc-sim`, branch `gamecoder/ttc-sim-backlog`. Files you may edit: `src/game/Terrain.ts`.
+Depends on: 21. Repo `/home/nig/ttc-sim`, branch `gamecoder/ttc-sim-backlog`. Files you may edit: `src/game/Terrain.ts src/game/CachePanel.ts src/main.ts`.
 
 ## Current behaviour
-`Terrain.updateImagery(cameraPos)` loads hi-res textures only for tiles in the baked index; other tiles stay low-res.
+`Terrain.updateImagery(cameraPos)` loads hi-res textures only for tiles in the baked index; other tiles stay low-res. There is no cache UI.
 
 ## Target
-For tiles with no baked hi-res image, fetch the 4×4 z17 OIWMS tiles live:
-`https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_Imagery/Ontario_Imagery_Web_Map_Service/MapServer/tile/{z}/{y}/{x}` (no key, Open Government Licence – Ontario).
-Store them in the TileCache, stitch them on a 1024 px canvas, and keep the existing LOD rules (load within 1300 m, drop beyond 2000 m).
+Tiles with no baked hi-res image load live from OIWMS through `TileCache.fetchTile` (cache first, 16 GB LRU, cooldown after 3 missed tiles; see 21 and nig-drives `OverpassCache.ts`).
+The URL is `https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_Imagery/Ontario_Imagery_Web_Map_Service/MapServer/tile/{z}/{y}/{x}` (no key, Open Government Licence – Ontario).
+A small corner panel shows the cache size and has a Clear button.
 
 ## Steps
-1. In Terrain.ts, add `private cache = new TileCache(...)`. Call `askPersist()` once.
-2. In the hi-res path, when the baked index has no hi-res entry, run `loadLive(z15 tile)`:
-   - for each of the 16 z17 tiles: cache.get → else `fetch` (max 4 in flight; skip on error) → cache.put;
-   - draw to the canvas and make a CanvasTexture.
-3. If the cache or `fetch` is unavailable, quietly keep the low-res texture.
-4. Keep the attribution string unchanged. It already credits OIWMS.
+1. `Terrain.ts`:
+   - add `private cache = new TileCache(null)` and an `async initCache()` that swaps in `createIdbBackend()` and calls `askPersist()`;
+   - in `updateImagery`, when the baked index has no hi-res entry for a z15 tile within 1300 m, run `loadLive(tile)`. It fetches the 16 z17 tiles through `cache.fetchTile(url, key('oiwms', 17, x, y))` with at most 4 in flight, skips nulls, draws them on a 1024 px canvas and makes a `CanvasTexture` (sRGB). Keep the existing LOD rules (load within 1300 m, drop beyond 2000 m, dispose on drop);
+   - while `cache.stats().cooling` is true, do not start new live loads;
+   - any failure keeps the low-res texture quietly, with no console.error.
+2. Create `src/game/CachePanel.ts` with `mountCachePanel(cache: TileCache, parent = document.body)`. It adds a small fixed bottom-left `div#cache-panel` (inline styles, about 11 px text, semi-transparent dark background, so no CSS file edit is needed) that shows `Map cache: <n> tiles · <MB> MB` (GB above 1024 MB), `· persistent` or `· may be cleared by browser`, and `· network paused (3 misses)` while cooling. It has a `button#cache-clear` labelled `Clear`, which runs `cache.clear()` and then refreshes. Refresh every 5 s and after each clear. Do not catch keyboard keys, so the driving controls keep working.
+3. `Terrain` exposes `readonly cache`. `main.ts` calls `await game.terrain?.initCache()` (when terrain exists) and `mountCachePanel(game.terrain.cache)` after `game.start()`. Leave `window.__ttcSim` and `__ttcSimTeleport` unchanged.
+4. Keep the attribution unchanged. It already credits OIWMS (OGL-Ontario) and OSM (ODbL).
 
 ## Acceptance
-- `npm test` passes. Smoke runs offline, so live fetches fail quietly with `no console errors`; any fetch error must be caught and must not use console.error.
+- `npm test` passes. The smoke test runs offline, so live fetches miss; after 3 misses the cooldown stops further requests, and `no console errors` still passes.
+- `#cache-panel` and `#cache-clear` exist in the page.
 
 ## Test
 `flock /tmp/nigian-heavy-tests.lock npm test`, run from `/home/nig/ttc-sim`. The queue runs it as the gate. Print nothing secret.

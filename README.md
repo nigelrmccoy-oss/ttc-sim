@@ -24,6 +24,15 @@ Everything else the game needs is committed under `public/data/`. Without `bake:
 terrain renders in plain green. `npm run bake` re-runs every bake step from the network
 (OSM, kiwix-serve on 127.0.0.1:8095 for Wikipedia, NRCan HRDEM, OIWMS).
 
+## Train model
+
+The cars are original TR-style GLB models (`public/models/tr_cab.glb`, `tr_mid.glb`). They are a non-trademark tribute with ESTIMATE dimensions, built headless by `scripts/blender/tr_car.py` in Blender 4.3; see `public/models/README.md`. The preview is `docs/images/tr-preview.png`. If the GLBs are missing, the game falls back to box cars.
+
+## Map data cache rules (shared with the other sims)
+
+- OSM data comes from Overpass at bake time only. `scripts/lib-overpass.mjs` asks nigian's local Overpass (`127.0.0.1:12346`) first, then public mirrors, and stops after 3 missed requests (© OpenStreetMap contributors, ODbL 1.0). Set `OVERPASS_URL=public` to skip the local server.
+- The browser tile cache (prompts 21–22, pattern: nig-drives `OverpassCache.ts`) uses IndexedDB with `navigator.storage.persist()`, a 16 GB LRU cap and version-prefixed keys. It reads the cache before the network, pauses the network after 3 missed tiles, and shows a size readout with a Clear button. Bing, Cesium and Google 3D Tiles are never disk-cached beyond their HTTP headers.
+
 ## Desktop icon and launcher
 
 - `scripts/launch.sh` builds `dist/` if it is missing or older than the sources. It then serves the built game with `vite preview` on http://127.0.0.1:5185/ and opens it in the browser.

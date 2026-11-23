@@ -18,6 +18,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { overpass } from './lib-overpass.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -32,13 +33,9 @@ const toLocal = (lat, lon) => [
 
 if (process.env.REFETCH || !fs.existsSync(rawPath)) {
   const q = `[out:json][timeout:180];relation(${RELATION})->.r;.r out geom;node(r.r);out body;way(r.r:"platform");out tags geom;`;
-  const res = await fetch('https://overpass-api.de/api/interpreter', {
-    method: 'POST',
-    headers: { 'User-Agent': 'ttc-sim-bake/0.1 (personal project)', 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: 'data=' + encodeURIComponent(q),
-  });
-  if (!res.ok) throw new Error(`Overpass HTTP ${res.status}`);
-  fs.writeFileSync(rawPath, await res.text());
+  const { text, via } = await overpass(q); // local nigian Overpass first, public mirrors fallback
+  console.error(`line1 relation via ${new URL(via).host}`);
+  fs.writeFileSync(rawPath, text);
 }
 const raw = JSON.parse(fs.readFileSync(rawPath, 'utf8'));
 const rawStat = fs.statSync(rawPath);
@@ -129,7 +126,7 @@ const out = {
   direction: rel.tags.name,
   source: {
     data: 'OpenStreetMap contributors, ODbL 1.0 (https://www.openstreetmap.org/copyright)',
-    via: 'Overpass API (overpass-api.de)',
+    via: 'Overpass API (refetch order: nigian local 127.0.0.1:12346, then public mirrors; the committed raw cache came from overpass-api.de)',
     relation: `https://www.openstreetmap.org/relation/${RELATION}`,
     fetched: rawStat.mtime.toISOString(),
     baked: new Date().toISOString(),

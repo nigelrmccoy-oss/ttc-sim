@@ -24,10 +24,10 @@ Run order is file order: 01–26 is the backlog and 90–99 is polish (run last)
 | 18 | Traction substations from OSM (600 V DC third rail), ESTIMATE gaps | none | `18-substations-bake.md` | `01-ttc-18-substations-bake.md` | ☐ |
 | 19 | Traction power model: 600 V sag, aux load, regen blend (pure, tested) | 18 | `19-traction-power-model.md` | `01-ttc-19-traction-power-model.md` | ☐ |
 | 20 | Use line voltage in physics and show a power panel | 19 | `20-traction-power-hud.md` | `01-ttc-20-traction-power-hud.md` | ☐ |
-| 21 | Persistent LRU tile cache in IndexedDB (ION LRT pattern) | none | `21-tile-cache-core.md` | `01-ttc-21-tile-cache-core.md` | ☐ |
-| 22 | Load uncached OIWMS hi-res tiles live through the tile cache | 21 | `22-oiwms-live-tiles.md` | `01-ttc-22-oiwms-live-tiles.md` | ☐ |
-| 23 | Blender script for an original TR-style car model | none | `23-blender-tr-script.md` | `01-ttc-23-blender-tr-script.md` | ☐ |
-| 24 | Use the TR GLB models with a box fallback | 23 | `24-load-tr-model.md` | `01-ttc-24-load-tr-model.md` | ☐ |
+| 21 | Persistent map tile cache: shared sim rule set (IndexedDB, 16 GB LRU) | none | `21-tile-cache-core.md` | `01-ttc-21-tile-cache-core.md` | ☐ |
+| 22 | Live OIWMS tiles through the tile cache, plus a cache size readout and Clear button | 21 | `22-oiwms-live-tiles.md` | `01-ttc-22-oiwms-live-tiles.md` | ☐ |
+| 23 | Verify and tidy the TR-style Blender script and GLBs (already built) | none | `23-blender-tr-script.md` | `01-ttc-23-blender-tr-script.md` | ☐ |
+| 24 | Verify the TR GLB cars in game (already wired, box fallback) | 23 | `24-load-tr-model.md` | `01-ttc-24-load-tr-model.md` | ☐ |
 | 25 | Full Xbox controller mapping (pure, tested) | none | `25-gamepad-map.md` | `01-ttc-25-gamepad-map.md` | ☐ |
 | 26 | Wire the gamepad door and mute buttons, update the help text and README controls | 13, 25 | `26-controls-wiring-readme.md` | `01-ttc-26-controls-wiring-readme.md` | ☐ |
 | 90 | Polish: HUD layout and readability | all of 01-26 | `90-polish-hud-layout.md` | `01-ttc-90-polish-hud-layout.md` | ☐ |

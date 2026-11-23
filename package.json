@@ -18,9 +18,10 @@
     "bake:imagery": "node scripts/bake-imagery.mjs",
     "bake:derived": "mkdir -p logs && PROFILE_ONLY=1 node scripts/bake-profile.mjs > logs/bake-profile.log",
     "test:data": "npm run -s bake:derived && if [ -n \"$(ls scripts/raw/wiki-html 2>/dev/null)\" ]; then WIKI_OFFLINE=1 node scripts/bake-stations-wiki.mjs > logs/bake-stations.log; else echo \"test:data: no scripts/raw/wiki-html cache, station rebake skipped\"; fi",
+    "check:py": "python3 -m py_compile scripts/blender/tr_car.py",
     "test:physics": "node scripts/physics-test.mjs",
     "test:smoke": "node scripts/smoke-test.mjs",
-    "test": "npm run test:data && npm run test:physics && npm run build && npm run test:smoke"
+    "test": "npm run check:py && npm run test:data && npm run test:physics && npm run build && npm run test:smoke"
   },
   "dependencies": {
     "three": "^0.170.0"
