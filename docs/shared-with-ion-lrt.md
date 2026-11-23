@@ -1,0 +1,82 @@
+# Techniques shared with ION LRT
+
+These are the parts of TTC Sim that the ION LRT bot can reuse, or that came from ION LRT. Paths are in this repo (`/home/nig/ttc-sim`) unless they say otherwise. ION LRT is used for reference only and is never edited from here.
+
+## 1. Lidar vertical profile (`scripts/bake-profile.mjs`, `scripts/lib-geo.mjs`)
+- **Ground:** NRCan HRDEM mosaic 1 m DTM, a Cloud Optimized GeoTIFF on S3 (`hrdem-mosaic-1m/8_2-mosaic-1m-dtm.tif`). It is read with `geotiff.js` bbox `readRasters` and bilinear sampling, after reprojecting to EPSG:3979 with `proj4`.
+  - Nodata is −32767, and the fallback is AWS Terrarium. The source is recorded per sample (`groundSource`).
+  - Heights are CGVD2013 orthometric.
+  - Track samples are cached in `scripts/raw/hrdem-track-5m.json`, so later bakes run offline in under 1 s.
+- **Classification:** OSM `tunnel`/`bridge`/`layer` tags on the route relation give each 5 m sample a class. A construction table (bored vs box vs open cut) comes from documents; see §5.
+- **Fit:**
+  - pins at platforms;
+  - a target depth below a 600 m running mean of the ground in tunnels, or a 200 m mean in the open;
+  - a forward/backward grade limiter (the documented max grade);
+  - an iterative vertical-curve fit (grade-change clamp plus cosine drift correction between anchors);
+  - portal anchoring only where the box roof would poke out;
+  - a final hard limit pass.
+- **Tests** (`scripts/physics-test.mjs`): coverage, no NaN, step ≤ G·ds, grade change per 5 m, max grade, level platforms, portals below ground.
+- **From ION LRT, now in the TTC Sim prompts:**
+  - a `PLATFORM_MAX_GRADE` clamp (TTC criteria ±0.3%; prompt 07);
+  - a `--design-only` style fast re-carve from cached raw terrain (`DESIGN_ONLY=1`; prompt 08).
+
+## 2. OIWMS imagery drape with LOD (`scripts/bake-imagery.mjs`, `src/game/Terrain.ts`)
+- **Source:** Ontario Imagery Web Map Service tile endpoint (no key, Open Government Licence – Ontario; SCOOP 2023 in Toronto):
+  `https://ws.lioservices.lrc.gov.on.ca/arcgis2/rest/services/LIO_Imagery/Ontario_Imagery_Web_Map_Service/MapServer/tile/{z}/{y}/{x}`.
+- **Bake:**
+  - fetch 4 at a time into `cache/oiwms/`;
+  - for every z15 terrain tile, write a `lo` image (256 px) and, within 250 m of the track, a `hi` image (1024 px stitched from 4×4 z17 tiles);
+  - the imagery is not committed (git-ignored); the attribution is in `public/imagery/index.json`, the README and in-game.
+- **Runtime:**
+  - terrain tiles are z15, 129² Int16 decimetre grids, carved at bake time;
+  - `THREE.LOD` levels at 0 and 1400 m;
+  - hi-res textures load within 1300 m and are dropped beyond 2000 m.
+- **From ION LRT (prompts 21–22):** a persistent IndexedDB LRU tile cache, with `navigator.storage.persist()`, version-prefixed keys and a memory backend for node tests. It follows ION's `src/game/map/MapCache.ts`.
+
+## 3. OSM buildings, trees, roads (`scripts/bake-corridor.mjs`, `src/game/Scenery.ts`)
+- One Overpass pull, 220 m around the route ways, gives `public/data/corridor.json`.
+- Building height:
+  - `height`, or `building:levels × 3.2 m` (ESTIMATE storey height);
+  - otherwise a per-type estimate, flagged `estimated` (6596 of 9295 buildings were estimated).
+- Wall winding is fixed. Roofs are triangulated. Buildings stay 6 m clear of open track.
+- Trees are one InstancedMesh, and roads are draped at 0.55 opacity.
+- Everything is merged per 500 m bucket, which keeps draw calls low: 69–574 on an RX 580, at 60 fps.
+
+## 4. Wikipedia station data, offline (`scripts/bake-stations-wiki.mjs`)
+- Articles come from the local kiwix server (`kiwix-serve` on 127.0.0.1:8095, zim `wikipedia_en_all_maxi_2026-08`).
+  - Full article HTML is cached in `scripts/raw/wiki-html/`, so rebakes run offline (`WIKI_OFFLINE=1`).
+  - Title overrides handle disambiguation, for example `Union_station_(TTC)` and the en-dash names.
+- Parsed fields:
+  - infobox label/data rows;
+  - the geo span;
+  - opening date, preferring the line-specific date;
+  - platform type;
+  - structure;
+  - levels and neighbourhood, each with a `basis`, or `null` (never guessed).
+- Wikipedia coordinates are flagged when they are more than 100 m from the OSM stop position.
+- Text licence: CC BY-SA. Only facts and short quotes go into the data file.
+
+## 5. Sources and estimates table
+- `docs/sources.md`: every source with URL and licence, a construction-facts table, and a list of estimates.
+- `docs/depth-findings.md`: per-section documented depths, elevations, portals and grades, each with a quote/page, URL, licence and confidence. Where nothing is documented, it says so.
+- `data/structure_depths.json` (prompt 01): each value is `{ value, unit, status: documented | estimate | estimate-in-documented-range, basis, source }`, and tests require documented entries to cite a URL.
+- Code rule: every uncited number carries `ESTIMATE` in a comment.
+
+## 6. Game Coder prompt format (`prompts/`, generated by `scripts/prompts/gen_prompts.py`)
+- **Front matter:** `repo`, `branch` (never main), `files` (the only editable files; anything else fails the step), `read`, `ctx` (32k unless `requires: 64k`) and `title`.
+- **Body sections:** Current behaviour → Target → numbered Steps → Acceptance (named asserts) → Test (`flock /tmp/nigian-heavy-tests.lock npm test`) → Rules (no keys, no logos/trademarks/copied sounds, label estimates, headless only).
+- **Queue:**
+  - copies go to `/mnt/240G/ai/coder/queue/pending/` as `<sortable-prefix>-NN-<slug>.md`;
+  - each is written as a `.tmp` file and then renamed (the daemon skips files less than 5 s old);
+  - they run in plain filename order, one at a time.
+- **Keep generated data out of `files:`.** Aider cannot run shell commands, so derived JSON is git-ignored and rebuilt by `npm run bake:derived` before dev, build and test.
+
+## 7. Patterns taken from ION LRT (reference: `/home/nig/ion-LRT`, read-only)
+- **Doors (`src/game/DoorCycle.ts`):**
+  - timeline: close chime at 0 s, motion at 0.85 s, seated at 2.85 s, interlock at 2.95 s; traction is cut until locked;
+  - TTC Sim uses the same timing (prompts 12–13), with its own synthesised G–E–C tones built from public descriptions, never recordings.
+- **Traction power (`src/game/TractionPower.ts`):**
+  - ION uses a resistive 750 V model with substations from OSM, 0.15 Ω/km sag, auxiliary load and a regen blend;
+  - TTC Sim adapts it to 600 V DC third rail, with OSM TTC substations plus ESTIMATE fillers (prompts 18–20).
+- **Map cache:** IndexedDB LRU with persist and versioned keys (prompts 21–22).
+- **Terrain bake (`tools/terrain/bake-dem.py`):** `PLATFORM_MAX_GRADE` and `--design-only` (prompts 07–08).

@@ -6,7 +6,9 @@
   "description": "Unofficial Toronto subway driving sim (fan project, not affiliated with the TTC)",
   "scripts": {
     "dev": "vite",
+    "predev": "npm run -s bake:derived",
     "build": "tsc && vite build",
+    "prebuild": "npm run -s bake:derived",
     "preview": "vite preview",
     "bake": "npm run bake:line1 && npm run bake:stations && npm run bake:profile && npm run bake:corridor && npm run bake:imagery",
     "bake:line1": "node scripts/bake-line1.mjs",
@@ -14,9 +16,11 @@
     "bake:profile": "node scripts/bake-profile.mjs",
     "bake:corridor": "node scripts/bake-corridor.mjs",
     "bake:imagery": "node scripts/bake-imagery.mjs",
+    "bake:derived": "mkdir -p logs && PROFILE_ONLY=1 node scripts/bake-profile.mjs > logs/bake-profile.log",
+    "test:data": "npm run -s bake:derived && if [ -n \"$(ls scripts/raw/wiki-html 2>/dev/null)\" ]; then WIKI_OFFLINE=1 node scripts/bake-stations-wiki.mjs > logs/bake-stations.log; else echo \"test:data: no scripts/raw/wiki-html cache, station rebake skipped\"; fi",
     "test:physics": "node scripts/physics-test.mjs",
     "test:smoke": "node scripts/smoke-test.mjs",
-    "test": "npm run test:physics && npm run build && npm run test:smoke"
+    "test": "npm run test:data && npm run test:physics && npm run build && npm run test:smoke"
   },
   "dependencies": {
     "three": "^0.170.0"

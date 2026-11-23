@@ -36,7 +36,25 @@ async function get(url) {
   return res.ok ? { url: res.url, text: await res.text() } : null;
 }
 
+// Full article HTML is cached in scripts/raw/wiki-html/ (git-ignored) so later bakes run offline, without kiwix.
+const htmlDir = path.join(root, 'scripts/raw/wiki-html');
+fs.mkdirSync(htmlDir, { recursive: true });
+const OFFLINE = process.env.WIKI_OFFLINE === '1';
+
 async function fetchArticle(name) {
+  const cacheFile = path.join(htmlDir, `${name.replace(/[^\w]+/g, '_')}.html`);
+  if (fs.existsSync(cacheFile)) {
+    const html = fs.readFileSync(cacheFile, 'utf8');
+    const title = html.match(/^<!-- title: (.*?) -->/)?.[1];
+    if (title) return { title, html };
+  }
+  if (OFFLINE) throw new Error(`WIKI_OFFLINE=1 but no cached article for ${name} in scripts/raw/wiki-html/ (run the bake once with kiwix on 127.0.0.1:8095)`);
+  const art = await fetchArticleLive(name);
+  if (art) fs.writeFileSync(cacheFile, `<!-- title: ${art.title} -->\n${art.html}`);
+  return art;
+}
+
+async function fetchArticleLive(name) {
   const candidates = [TITLE_OVERRIDES[name], `${name.replace(/-/g, '–')} station`, `${name} station`, `${name} station (Toronto)`].filter(Boolean);
   for (const c of candidates) {
     const t = c.replace(/ /g, '_');
@@ -142,7 +160,7 @@ fs.writeFileSync(path.join(root, 'public/data/line1_stations.json'), JSON.string
   source: {
     facts: `English Wikipedia via offline kiwix zim ${BOOK} (text CC BY-SA 4.0; per-station article titles below)`,
     osm: 'Stop positions: OpenStreetMap contributors, ODbL 1.0 (relation 102388)',
-    extracted: new Date().toISOString(),
+    extracted: `kiwix ${BOOK} (article HTML cached in scripts/raw/wiki-html/)`,
     note: 'coordMismatch = Wikipedia infobox coordinates more than 100 m from the OSM stop position (OSM marks the train stop point, Wikipedia usually the station building/centre).',
   },
   stations: out,

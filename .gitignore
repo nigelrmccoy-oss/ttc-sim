@@ -16,3 +16,7 @@ public/imagery/
 # Large raw extracts (re-fetch with the bake scripts)
 scripts/raw/corridor-features.json
 scripts/raw/wiki/
+scripts/raw/wiki-html/
+
+# Generated from committed inputs by `npm run bake:derived` (runs before dev/build/test)
+public/data/line1_profile.json

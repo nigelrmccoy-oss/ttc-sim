@@ -1,0 +1,450 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-11-21T21:20:42Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 555408684,
+  "lat": 43.6934184,
+  "lon": -79.4300377,
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "db90ae4f060e490d8a60a8ffbb4ee1d6",
+    "power": "substation",
+    "source": "CanVec_Import_2009"
+  }
+},
+{
+  "type": "node",
+  "id": 555408771,
+  "lat": 43.7192330,
+  "lon": -79.4003189,
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "089f1c5f3cd241698a2bac4a1fd7258a",
+    "power": "substation",
+    "source": "CanVec_Import_2009"
+  }
+},
+{
+  "type": "node",
+  "id": 555408792,
+  "lat": 43.7435858,
+  "lon": -79.4070744,
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "25a8e96fb4ed4378977ce6398d375fba",
+    "power": "substation",
+    "source": "CanVec_Import_2009"
+  }
+},
+{
+  "type": "way",
+  "id": 43812938,
+  "center": {
+    "lat": 43.7022876,
+    "lon": -79.4429405
+  },
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360052",
+    "canvec:UUID": "812c810f663b4d7692baa24fbd7884d1",
+    "name": "Fairbank TS",
+    "operator": "Hydro One",
+    "operator:wikidata": "Q3143709",
+    "power": "substation",
+    "source": "CanVec_Import_2009",
+    "substation": "minor_distribution",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 43935204,
+  "center": {
+    "lat": 43.7830645,
+    "lon": -79.4197969
+  },
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360052",
+    "canvec:UUID": "11CF43A8AE95E5F4E0409C8467120387",
+    "location": "outdoor",
+    "name": "Fairchild TS",
+    "operator": "Hydro One",
+    "operator:wikidata": "Q3143709",
+    "operator:wikipedia": "en:Hydro One",
+    "power": "substation",
+    "source": "CanVec_Import_2009",
+    "substation": "transmission",
+    "voltage": "230000"
+  }
+},
+{
+  "type": "way",
+  "id": 56123339,
+  "center": {
+    "lat": 43.6970465,
+    "lon": -79.3965808
+  },
+  "tags": {
+    "building": "yes",
+    "building:colour": "red",
+    "building:levels": "1",
+    "building:material": "brick",
+    "operator": "Toronto Transit Commission",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 56235478,
+  "center": {
+    "lat": 43.6547311,
+    "lon": -79.3836899
+  },
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "building": "yes",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "61e025c16252497194e5224ab276471a",
+    "operator": "Hydro One",
+    "operator:wikidata": "Q3143709",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 98566771,
+  "center": {
+    "lat": 43.6823311,
+    "lon": -79.3853368
+  },
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "65b2aab0a1a0414b843c167a694027ee",
+    "operator": "Hydro One",
+    "operator:wikidata": "Q3143709",
+    "power": "substation",
+    "source": "Bing",
+    "substation": "transition",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 105500734,
+  "center": {
+    "lat": 43.6605422,
+    "lon": -79.3817103
+  },
+  "tags": {
+    "building": "yes",
+    "operator": "Toronto Transit Commission",
+    "power": "substation",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 106177576,
+  "center": {
+    "lat": 43.6811819,
+    "lon": -79.3917548
+  },
+  "tags": {
+    "operator": "Hydro One",
+    "operator:wikidata": "Q3143709",
+    "power": "substation",
+    "source": "Bing",
+    "substation": "transition",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 106344322,
+  "center": {
+    "lat": 43.6694255,
+    "lon": -79.3811431
+  },
+  "tags": {
+    "addr:city": "Toronto",
+    "addr:housenumber": "83",
+    "addr:street": "Charles Street East",
+    "attribution": "Natural Resources Canada",
+    "building": "yes",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "a365b4bcac6f43b2958bd43946b946ce",
+    "opendata:type": "100001",
+    "power": "substation",
+    "source": "Bing;CanVec_Import_2009"
+  }
+},
+{
+  "type": "way",
+  "id": 114976761,
+  "center": {
+    "lat": 43.7070155,
+    "lon": -79.4008628
+  },
+  "tags": {
+    "building": "service",
+    "name": "Duplex TS",
+    "operator": "Toronto Hydro",
+    "operator:wikidata": "Q7826411",
+    "operator:wikipedia": "en:Toronto Hydro",
+    "power": "substation",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 124559407,
+  "center": {
+    "lat": 43.6874845,
+    "lon": -79.3930405
+  },
+  "tags": {
+    "building": "industrial",
+    "height": "5",
+    "power": "substation",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 128145785,
+  "center": {
+    "lat": 43.7814219,
+    "lon": -79.4178376
+  },
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "building": "yes",
+    "building:levels": "1",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "11CF43A89C05E5F4E0409C8467120387",
+    "operator": "Toronto Transit Commission",
+    "power": "substation",
+    "source": "CanVec_Import_2009"
+  }
+},
+{
+  "type": "way",
+  "id": 139617223,
+  "center": {
+    "lat": 43.7159246,
+    "lon": -79.4435991
+  },
+  "tags": {
+    "building": "yes",
+    "operator": "TTC",
+    "power": "substation",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 157957982,
+  "center": {
+    "lat": 43.6717838,
+    "lon": -79.3856080
+  },
+  "tags": {
+    "addr:city": "Toronto",
+    "addr:housenumber": "34",
+    "addr:street": "Asquith Avenue",
+    "building": "yes",
+    "building:colour": "red",
+    "building:levels": "1",
+    "building:material": "brick",
+    "operator": "Toronto Transit Commission",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 178828249,
+  "center": {
+    "lat": 43.6547729,
+    "lon": -79.3838135
+  },
+  "tags": {
+    "name": "Terauley TS",
+    "power": "substation",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 240329313,
+  "center": {
+    "lat": 43.6586037,
+    "lon": -79.3914046
+  },
+  "tags": {
+    "attribution": "Natural Resources Canada",
+    "building": "yes",
+    "name": "Toronto Transit Commission Orde Substation",
+    "operator": "Toronto Transit Commission",
+    "power": "substation",
+    "source": "CanVec_Import_2009"
+  }
+},
+{
+  "type": "way",
+  "id": 443796048,
+  "center": {
+    "lat": 43.6689636,
+    "lon": -79.3973644
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 661896426,
+  "center": {
+    "lat": 43.7036540,
+    "lon": -79.4333241
+  },
+  "tags": {
+    "addr:city": "Toronto",
+    "addr:housenumber": "85",
+    "addr:postcode": "M6B 1A6",
+    "addr:province": "ON",
+    "addr:street": "Elm Ridge Drive",
+    "attribution": "Natural Resources Canada",
+    "building": "yes",
+    "canvec:CODE": "1360050",
+    "canvec:UUID": "94969cf4795f402cb137d1697b7767c1",
+    "operator": "Toronto Hydro",
+    "operator:wikidata": "Q7826411",
+    "operator:wikipedia": "en:Toronto Hydro",
+    "power": "substation",
+    "source": "CanVec_Import_2009"
+  }
+},
+{
+  "type": "way",
+  "id": 661942770,
+  "center": {
+    "lat": 43.7246330,
+    "lon": -79.4023695
+  },
+  "tags": {
+    "building": "roof",
+    "building:levels": "1",
+    "name": "Toronto Transit Commission",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 688051459,
+  "center": {
+    "lat": 43.6486972,
+    "lon": -79.3886261
+  },
+  "tags": {
+    "addr:housenumber": "29",
+    "addr:street": "Nelson Street",
+    "building": "yes",
+    "building:colour": "brown",
+    "location": "indoor",
+    "name": "THES - Station D",
+    "operator": "Toronto Hydro-Electric System",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1223894429,
+  "center": {
+    "lat": 43.7036931,
+    "lon": -79.4332742
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1370673190,
+  "center": {
+    "lat": 43.6991922,
+    "lon": -79.4355594
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1422768079,
+  "center": {
+    "lat": 43.6751272,
+    "lon": -79.4074662
+  },
+  "tags": {
+    "power": "substation",
+    "substation": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 1478718856,
+  "center": {
+    "lat": 43.7635701,
+    "lon": -79.4921676
+  },
+  "tags": {
+    "building": "yes",
+    "name": "Finch West LRT substation",
+    "power": "substation",
+    "substation": "traction"
+  }
+},
+{
+  "type": "relation",
+  "id": 15882143,
+  "center": {
+    "lat": 43.6767647,
+    "lon": -79.4048431
+  },
+  "tags": {
+    "addr:city": "Toronto",
+    "addr:housenumber": "451",
+    "addr:street": "Davenport Road",
+    "attribution": "Natural Resources Canada",
+    "canvec:CODE": "1360052",
+    "canvec:UUID": "b5b76b42a7a54b4fa14f2bdc5b6d1965",
+    "name": "Bridgman TS",
+    "name:en": "Bridgman Transformer Station",
+    "name:fr": "Poste de transformation Bridgman",
+    "operator": "Hydro One",
+    "operator:wikidata": "Q3143709",
+    "operator:wikipedia": "en:Hydro One",
+    "power": "substation",
+    "source": "CanVec_Import_2009",
+    "substation": "minor_distribution",
+    "type": "multipolygon",
+    "voltage": "115000"
+  }
+}
+
+  ]
+}

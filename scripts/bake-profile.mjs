@@ -245,7 +245,6 @@ const profile = {
     ground: `NRCan HRDEM mosaic 1 m DTM (${HRDEM_DTM}), Open Government Licence - Canada; fallback AWS Terrain Tiles (Terrarium) where HRDEM is nodata`,
     classes: 'OpenStreetMap way tags tunnel/bridge/layer on relation 102388 (ODbL)',
     construction: 'see docs/sources.md; per-parameter basis in "structure"',
-    baked: new Date().toISOString(),
   },
   stepM: DS,
   structure: STRUCTURE,

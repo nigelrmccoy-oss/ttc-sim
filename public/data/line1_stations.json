@@ -2,7 +2,7 @@
  "source": {
   "facts": "English Wikipedia via offline kiwix zim wikipedia_en_all_maxi_2026-08 (text CC BY-SA 4.0; per-station article titles below)",
   "osm": "Stop positions: OpenStreetMap contributors, ODbL 1.0 (relation 102388)",
-  "extracted": "2026-11-21T10:00:37.017Z",
+  "extracted": "kiwix wikipedia_en_all_maxi_2026-08 (article HTML cached in scripts/raw/wiki-html/)",
   "note": "coordMismatch = Wikipedia infobox coordinates more than 100 m from the OSM stop position (OSM marks the train stop point, Wikipedia usually the station building/centre)."
  },
  "stations": [
